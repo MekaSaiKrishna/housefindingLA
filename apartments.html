@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LA Luxury Apartment Research — Sai Krishna Meka</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; margin: 24px; background: #f0f2f5; color: #222; }
+    h1  { color: #1a2540; margin-bottom: 4px; }
+    h2  { color: #34495e; margin: 28px 0 8px; }
+    p.subtitle { color: #555; margin-top: 0; font-size: 13px; }
+
+    /* ── Legend ───────────────────────────────────────── */
+    .legend { display: flex; gap: 18px; margin: 12px 0 20px; flex-wrap: wrap; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+    .lb { width: 18px; height: 18px; border: 1px solid #bbb; border-radius: 3px; }
+    .lg { background: #90EE90; }
+    .ly { background: #FFFF99; }
+    .lr { background: #FFB6C1; }
+    .ld { background: #D3D3D3; }
+
+    /* ── Main table ───────────────────────────────────── */
+    .main-table { border-collapse: collapse; width: 100%; background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,.12); border-radius: 6px; overflow: hidden; }
+    .main-table th { background: #1a2540; color: #fff; padding: 10px 7px;
+      font-size: 12px; text-align: center; white-space: nowrap; }
+    .main-table td { padding: 8px 7px; border: 1px solid #ddd; font-size: 11.5px;
+      text-align: center; vertical-align: top; }
+    .main-table tr:nth-child(even) td { background: rgba(0,0,0,.018); }
+    .main-table tr:hover td { filter: brightness(.96); }
+
+    td.left { text-align: left; }
+    td.prop  { font-weight: bold; text-align: left; min-width: 140px; }
+
+    /* Rank badges */
+    .badge { display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; font-size: 11px;
+      font-weight: bold; margin-right: 4px; }
+    .b1 { background: #FFD700; color: #333; }
+    .b2 { background: #C0C0C0; color: #333; }
+    .b3 { background: #CD7F32; color: #fff; }
+    .b4,.b5,.b6,.b7,.b8 { background: #7f8c8d; color: #fff; }
+
+    /* Cell colours */
+    .green  { background: #90EE90 !important; }
+    .yellow { background: #FFFF99 !important; }
+    .red    { background: #FFB6C1 !important; }
+    .gray   { background: #D3D3D3 !important; }
+
+    /* Pass/Fail inline text */
+    .ok   { color: #1a7a1a; font-weight: bold; }
+    .no   { color: #c0000a; font-weight: bold; }
+    .marg { color: #b07800; font-weight: bold; }
+
+    /* ── Additional Info table ───────────────────────── */
+    .info-table { border-collapse: collapse; width: 100%; background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,.12); border-radius: 6px; overflow: hidden; }
+    .info-table th { background: #2c3e50; color: #fff; padding: 9px 8px; font-size: 12px; text-align: center; }
+    .info-table td { padding: 8px; border: 1px solid #ddd; font-size: 11.5px;
+      vertical-align: top; text-align: left; }
+    .info-table tr:nth-child(even) td { background: rgba(0,0,0,.018); }
+
+    /* Priority legend box */
+    .priority-box { background: #fff; border-left: 4px solid #1a2540;
+      padding: 12px 16px; margin-bottom: 20px; border-radius: 4px;
+      box-shadow: 0 1px 6px rgba(0,0,0,.08); font-size: 12px; }
+    .priority-box h3 { margin: 0 0 6px; color: #1a2540; font-size: 13px; }
+    .priority-box ul { margin: 0; padding-left: 18px; }
+    .priority-box li { margin: 2px 0; }
+
+    footer { margin-top: 30px; font-size: 11px; color: #888; }
+  </style>
+</head>
+<body>
+
+<h1>🏠 LA Luxury Apartment Research</h1>
+<p class="subtitle">Prepared for: Sai Krishna Meka &nbsp;|&nbsp; Workplace: 470 N Aviation Blvd, El Segundo, CA &nbsp;|&nbsp; Budget: ≤ $2,500/mo all-in &nbsp;|&nbsp; Updated: May 2026</p>
+
+<!-- Priority reminder -->
+<div class="priority-box">
+  <h3>Your Priorities (from README)</h3>
+  <ul>
+    <li><strong>TOP:</strong> ≤$2,500/mo all-in · Fully functioning gym · Safe neighborhood · Google rating ≥ 4.0 · Car parking</li>
+    <li><strong>MEDIUM:</strong> Loft style · ~700 sqft · Modern kitchen · Big windows · ≤35-40 min drive to El Segundo</li>
+    <li><strong>LOW:</strong> Pool/spa · Good common areas</li>
+    <li><strong>ALSO CHECK:</strong> Move-in specials · Look & lease offers · Lease-renewal price jumps · New construction · Respectful management</li>
+  </ul>
+</div>
+
+<!-- Colour legend -->
+<div class="legend">
+  <div class="legend-item"><div class="lb lg"></div> Meets criteria</div>
+  <div class="legend-item"><div class="lb ly"></div> Marginal / verify</div>
+  <div class="legend-item"><div class="lb lr"></div> Does NOT meet criteria</div>
+  <div class="legend-item"><div class="lb ld"></div> Data not confirmed</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     MAIN SPREADSHEET
+═══════════════════════════════════════════════════ -->
+<h2>Property Comparison Spreadsheet</h2>
+<p style="font-size:12px;color:#666;margin-top:-4px;">Sorted best → worst based on your top priorities. "Total Cost" = base rent + est. parking + est. utilities (~$100-150/mo).</p>
+
+<table class="main-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Property Name</th>
+      <th>Address</th>
+      <th>Studio Rent<br>(min – max)</th>
+      <th>1 Bed / 1 Bath<br>(min – max)</th>
+      <th>Google<br>Rating</th>
+      <th>Safety<br>(0–5)</th>
+      <th>Distance to<br>Workplace</th>
+      <th>Parking<br>$/mo</th>
+      <th>Total Cost<br>/mo (est.)</th>
+      <th>Loft?</th>
+      <th>Sqft Range</th>
+      <th>Gym</th>
+      <th>Pool / Spa</th>
+      <th>Top-Priority<br>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <!-- ── RANK 1: Park West ─────────────────────────── -->
+    <tr>
+      <td><span class="badge b1">1</span></td>
+      <td class="prop">Park West Apartments<br><span style="font-weight:normal;font-size:10.5px;color:#555;">Equity Residential</span></td>
+      <td class="left">9400 La Tijera Blvd<br>Los Angeles, CA 90045<br><em>Westchester</em></td>
+      <td class="green">$1,949 – $2,275</td>
+      <td class="yellow">$2,034 – $2,830</td>
+      <td class="green">⭐ 4.0</td>
+      <td class="green">4 / 5<br><small>Westchester B+</small></td>
+      <td class="green">4 mi<br>~10 min (off-peak)<br>~20-25 min (rush)</td>
+      <td class="green">~$50–$100<br><small>Underground</small></td>
+      <td class="green">Studio: ~$2,150–$2,450<br>1bd: ~$2,250–$3,050</td>
+      <td class="yellow">No<br><small>Traditional</small></td>
+      <td>455 – 897 sqft</td>
+      <td class="green">✔ 24hr</td>
+      <td class="green">✔ Pool<br>✔ Spa</td>
+      <td class="green"><span class="ok">✔ MEETS ALL TOP 5</span></td>
+    </tr>
+
+    <!-- ── RANK 2: Playa Summit ──────────────────────── -->
+    <tr>
+      <td><span class="badge b2">2</span></td>
+      <td class="prop">Playa Summit<br><span style="font-weight:normal;font-size:10.5px;color:#555;">Independent</span></td>
+      <td class="left">7077 Alvern St<br>Los Angeles, CA 90045<br><em>Westchester</em></td>
+      <td class="gray">N/A<br><small>No studios</small></td>
+      <td class="green">$1,906 – $2,578</td>
+      <td class="yellow">~3.5–4.0<br><small>Unconfirmed</small></td>
+      <td class="green">4 / 5<br><small>Westchester B+</small></td>
+      <td class="green">4 mi<br>~10 min (off-peak)<br>~20-25 min (rush)</td>
+      <td class="yellow">~$100<br><small>Assigned</small></td>
+      <td class="green">1bd: ~$2,100–$2,830</td>
+      <td class="green">✔ Select units<br><small>Rooftop deck</small></td>
+      <td class="green">700 – 960 sqft</td>
+      <td class="green">✔ Resort</td>
+      <td class="green">✔ Pool<br>✔ Spa</td>
+      <td class="yellow"><span class="marg">⚠ Verify Google rating<br>Poor staff reviews</span></td>
+    </tr>
+
+    <!-- ── RANK 3: Playa Del Oro ─────────────────────── -->
+    <tr>
+      <td><span class="badge b3">3</span></td>
+      <td class="prop">Playa Del Oro<br><span style="font-weight:normal;font-size:10.5px;color:#555;">Decron Properties</span></td>
+      <td class="left">8601 Lincoln Blvd<br>Los Angeles, CA 90045<br><em>Westchester / Playa Del Rey</em></td>
+      <td class="yellow">$2,514 – $2,998<br><small>Parking incl.</small></td>
+      <td class="red">~$3,000+</td>
+      <td class="green">⭐ 4.0</td>
+      <td class="green">4 / 5<br><small>LA 90045 B+</small></td>
+      <td class="green">5 mi<br>~12 min (off-peak)<br>~25 min (rush)</td>
+      <td class="green">Included (1 space)<br>Extra: $60–$95</td>
+      <td class="red">Studio: ~$2,650–$3,150</td>
+      <td class="yellow">Not confirmed</td>
+      <td>529 – 644 sqft</td>
+      <td class="green">✔ Resort</td>
+      <td class="green">✔ Pool<br>✔ Tennis</td>
+      <td class="yellow"><span class="marg">⚠ Studio over $2,500<br>Freq. fire alarms</span></td>
+    </tr>
+
+    <!-- ── RANK 4: Fountain Park at Playa Vista ──────── -->
+    <tr>
+      <td><span class="badge b4">4</span></td>
+      <td class="prop">Fountain Park at Playa Vista<br><span style="font-weight:normal;font-size:10.5px;color:#555;">Essex Apartment Homes</span></td>
+      <td class="left">13141 Fountain Park Dr<br>Playa Vista, CA 90094<br><em>Playa Vista</em></td>
+      <td class="yellow">$2,294 – $2,967</td>
+      <td class="red">$2,659 – $3,491</td>
+      <td class="gray">~4.0?<br><small>Unconfirmed</small></td>
+      <td class="yellow">3 / 5<br><small>Playa Vista C</small></td>
+      <td class="green">6 mi<br>~11-15 min (off-peak)<br>~25-35 min (rush)</td>
+      <td class="yellow">~$100<br><small>Garage</small></td>
+      <td class="yellow">Studio: ~$2,500–$3,200</td>
+      <td class="green">✔ 1bd+loft/den<br>option</td>
+      <td class="green">684+ sqft</td>
+      <td class="green">✔ Full</td>
+      <td class="green">✔ 2 Pools<br>✔ Jacuzzi</td>
+      <td class="yellow"><span class="marg">⚠ C safety grade<br>Budget borderline</span></td>
+    </tr>
+
+    <!-- ── RANK 5: Pacific Place ─────────────────────── -->
+    <tr>
+      <td><span class="badge b5">5</span></td>
+      <td class="prop">Pacific Place<br><span style="font-weight:normal;font-size:10.5px;color:#555;">Equity Residential</span></td>
+      <td class="left">5211 Pacific Concourse Dr<br>Los Angeles, CA 90045<br><em>Near El Segundo</em></td>
+      <td class="yellow">$2,411 – $2,745</td>
+      <td class="red">$2,745 – $3,360</td>
+      <td class="red">~3.9<br><small>BELOW 4.0 ✗</small></td>
+      <td class="green">4 / 5<br><small>90045 B+</small></td>
+      <td class="green">2 mi<br>~5-7 min (off-peak)<br>~10-15 min (rush)</td>
+      <td class="yellow">~$75<br><small>Garage (issues)</small></td>
+      <td class="yellow">Studio: ~$2,600–$3,000</td>
+      <td class="green">✔✔ 24ft ceilings<br>True loft</td>
+      <td class="green">533 – 1,289 sqft</td>
+      <td class="green">✔ Full</td>
+      <td class="green">✔ 2 Pools<br>✔ Theater</td>
+      <td class="red"><span class="no">✘ FAILS Google rating<br>(3.9 &lt; 4.0)</span><br>1 mo free thru 5/23</td>
+    </tr>
+
+    <!-- ── RANK 6: Kinley West LA ─────────────────────── -->
+    <tr>
+      <td><span class="badge b6">6</span></td>
+      <td class="prop">Kinley West LA<br><span style="font-weight:normal;font-size:10.5px;color:#555;">Greystar</span></td>
+      <td class="left">6711 S Sepulveda Blvd<br>Los Angeles, CA 90045<br><em>Westchester</em></td>
+      <td class="gray">N/A<br><small>No studios</small></td>
+      <td class="red">$2,627 – $3,723</td>
+      <td class="gray">Unconfirmed</td>
+      <td class="green">4 / 5<br><small>Westchester B+</small></td>
+      <td class="green">4.5 mi<br>~10 min (off-peak)<br>~20 min (rush)</td>
+      <td class="yellow">~$100–$150<br><small>Controlled</small></td>
+      <td class="red">1bd: ~$2,900–$4,050</td>
+      <td class="yellow">Not confirmed<br><small>Modern build</small></td>
+      <td>652 – 827 sqft</td>
+      <td class="green">✔✔ 24hr TechnoGym<br>+ outdoor arbor</td>
+      <td class="green">✔ Pool<br>✔ Rooftop</td>
+      <td class="red"><span class="no">✘ OVER BUDGET</span><br>$1,500 off promo<br>(verify validity)</td>
+    </tr>
+
+    <!-- ── RANK 7: Runway Playa Vista ────────────────── -->
+    <tr>
+      <td><span class="badge b7">7</span></td>
+      <td class="prop">Runway Playa Vista<br><span style="font-weight:normal;font-size:10.5px;color:#555;">Greystar</span></td>
+      <td class="left">12760 W Millennium Dr<br>Playa Vista, CA 90094<br><em>Playa Vista</em></td>
+      <td class="red">$2,970 – $3,509</td>
+      <td class="red">$3,526+</td>
+      <td class="gray">Unconfirmed</td>
+      <td class="yellow">3 / 5<br><small>Playa Vista C</small></td>
+      <td class="green">6.5 mi<br>~12-15 min (off-peak)<br>~25-35 min (rush)</td>
+      <td class="red">⚠ NO PARKING<br><small>Shortage noted</small></td>
+      <td class="red">~$3,200–$3,800+</td>
+      <td class="green">✔✔ 2-story loft<br>18ft ceilings</td>
+      <td class="green">553 – 1,469 sqft</td>
+      <td class="green">✔✔ 2 gyms<br>+ yoga studio</td>
+      <td class="green">✔✔ 2 Pool/Spa<br>+ Outdoor theaters</td>
+      <td class="red"><span class="no">✘ Over budget<br>✘ No parking<br>✘ C safety</span><br>8 wks free on select</td>
+    </tr>
+
+    <!-- ── RANK 8: Forty55 Lofts ─────────────────────── -->
+    <tr>
+      <td><span class="badge b8">8</span></td>
+      <td class="prop">Forty55 Lofts<br><span style="font-weight:normal;font-size:10.5px;color:#555;">Greystar</span></td>
+      <td class="left">4055 Redwood Ave<br>Marina Del Rey, CA 90066<br><em>Marina Del Rey</em></td>
+      <td class="gray">N/A<br><small>No studios</small></td>
+      <td class="red">$3,500 – $5,514</td>
+      <td class="gray">Unconfirmed<br><small>Positive reviews</small></td>
+      <td class="red">2 / 5<br><small>Marina del Rey D-</small></td>
+      <td class="yellow">8 mi<br>~20 min (off-peak)<br>~35-45 min (rush)</td>
+      <td class="yellow">$100<br><small>Covered</small></td>
+      <td class="red">~$3,750+</td>
+      <td class="green">✔✔ True luxury<br>loft style</td>
+      <td>—</td>
+      <td class="green">✔ 24hr cardio<br>+ Zen lounge</td>
+      <td class="green">✔ Pool<br>✔ BBQ / Dog park</td>
+      <td class="red"><span class="no">✘ Way over budget<br>✘ D- safety</span></td>
+    </tr>
+
+  </tbody>
+</table>
+
+<!-- ═══════════════════════════════════════════════════
+     ADDITIONAL INTEL TABLE
+═══════════════════════════════════════════════════ -->
+<h2>Additional Considerations</h2>
+<p style="font-size:12px;color:#666;margin-top:-4px;">Move-in specials · Lease renewal history · Management quality · Year built</p>
+
+<table class="info-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Property</th>
+      <th>Move-in / Lease-Signing Specials</th>
+      <th>Lease Renewal Price Jump (History)</th>
+      <th>Year Built / Age</th>
+      <th>Management Quality</th>
+      <th>Unique Selling Points</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:center;"><strong>1</strong></td>
+      <td><strong>Park West</strong></td>
+      <td>None advertised currently. Check directly — Equity Residential periodically offers 1–2 weeks free.</td>
+      <td>Typical Equity Residential increases: ~3–5% at renewal. Data not publicly available for this property.</td>
+      <td>Established 1980s–90s building. Well maintained.</td>
+      <td class="green">Generally positive. On-site management + maintenance. 24hr courtesy line. Zumper score 9.3/10.</td>
+      <td>Underground parking · Fireplace in units · Business center · Wi-Fi lounge · Near LMU &amp; golf course · Controlled access</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><strong>2</strong></td>
+      <td><strong>Playa Summit</strong></td>
+      <td>None advertised. Contact directly — Westchester Apartments LA nearby offering 1 month free.</td>
+      <td class="red">Residents report annual increases; complaints of no goodwill discounts even for long-term tenants.</td>
+      <td>Established (13-acre landscaped campus). ~1990s–2000s.</td>
+      <td class="red">Poor staff rating (1/5 on ApartmentRatings). Reports of unresponsive management post-lease-signing. Amenities (spa, gym) sometimes broken.</td>
+      <td>Loft units with private rooftop decks · 700-960 sqft · EV charging · Co-working lounge · 24hr courtesy patrol · 13 acres</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><strong>3</strong></td>
+      <td><strong>Playa Del Oro</strong></td>
+      <td>None confirmed. Contact Decron Properties. Check their website for seasonal promotions.</td>
+      <td>Not publicly documented. Decron is a mid-tier operator — moderate increases typical.</td>
+      <td>Established property, ~1990s. Not newly built.</td>
+      <td class="yellow">Mixed. Some residents report change in management attitude after signing. Clean and well-maintained grounds. 4.0 Google rating suggests generally acceptable.</td>
+      <td>Parking included in rent · Tennis courts · Pool/spa · Near beach · EV charging · Pet-friendly · 193 Yelp reviews</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><strong>4</strong></td>
+      <td><strong>Fountain Park at Playa Vista</strong></td>
+      <td>Essex properties occasionally run "look &amp; lease" deals. Check essexapartmenthomes.com directly.</td>
+      <td>Essex Apartment Homes (publicly traded REIT — ESS). Historically 4–6% annual increases. Transparent renewal policies.</td>
+      <td>~2002–2005 (Playa Vista master-planned community, built early 2000s). Relatively modern.</td>
+      <td class="green">Essex is a publicly traded company — strong accountability. Generally professional management. 286+ Yelp reviews.</td>
+      <td>2 pools + Jacuzzi · Game room · Loft/den options · Silicon Beach location · Walk to shops, park · Pet-friendly</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><strong>5</strong></td>
+      <td><strong>Pacific Place</strong></td>
+      <td class="green"><strong>Up to 1 MONTH FREE</strong> on select units through May 23, 2026. Act fast — offer expires soon!</td>
+      <td class="red">Residents report overpriced renewal rates. Flooding alarm on 1st floor nearly nightly. Fire alarms very sensitive.</td>
+      <td>Established ~1990s. Not newly built.</td>
+      <td class="red">Mixed. Many negative reviews: rude staff, parking garage leaks, chronic fire alarms, 3.9/5 overall. Positive: location &amp; loft ceilings.</td>
+      <td>Closest to workplace (2 mi!) · 24ft ceiling true lofts · Fireplace · 2 pools · Theater room · Walk to El Segundo amenities</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><strong>6</strong></td>
+      <td><strong>Kinley West LA</strong></td>
+      <td class="yellow">$1,500 off Look &amp; Lease special was valid through 5/15/2026. Likely expired — verify with leasing office.</td>
+      <td>Newer property, limited public renewal history. Greystar manages — typical increases 4–6% annually.</td>
+      <td class="green">Newer build (~2020s). Modern construction &amp; finishes.</td>
+      <td class="green">Greystar managed (one of largest US apartment operators). Professional, consistent. 13 available units as of May 2026.</td>
+      <td>New construction · TechnoGym equipment · Outdoor fitness arbor · Rooftop lounge · EV chargers · LuxerOne package lockers · 180 homes total</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><strong>7</strong></td>
+      <td><strong>Runway Playa Vista</strong></td>
+      <td class="green">Up to 8 WEEKS FREE on select apartment homes. Strong incentive — verify current availability.</td>
+      <td class="red">Residents report strict lease break penalties (4 months' rent to break). Renewal increase history unclear.</td>
+      <td class="green">Built ~2015. Modern construction.</td>
+      <td class="yellow">Greystar managed. Generally professional, but residents report inflexibility on lease terms.</td>
+      <td>2-story lofts 18ft ceilings · 2 fitness centers + yoga · 2 outdoor theaters · Juice bar · 10 fire pit plaza · Silicon Beach (tech hub nearby)</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><strong>8</strong></td>
+      <td><strong>Forty55 Lofts</strong></td>
+      <td>None confirmed.</td>
+      <td>Greystar managed — typically 4–6% annual increases.</td>
+      <td>Modern (~2010s). Premium build quality.</td>
+      <td class="green">Greystar managed. Excellent management reviews — welcoming, responsive, community-oriented events.</td>
+      <td>True luxury loft · Cardio + zen lounge · Pool/spa · BBQ + dog park · In-unit W/D · Marina del Rey views — aspirational pick if budget expands</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ═══════════════════════════════════════════════════
+     SUMMARY / RECOMMENDATION
+═══════════════════════════════════════════════════ -->
+<h2>Summary &amp; Recommendation</h2>
+<table class="info-table">
+  <thead>
+    <tr>
+      <th style="width:20%">Scenario</th>
+      <th>Best Pick</th>
+      <th>Why</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Best overall (all criteria met)</strong></td>
+      <td class="green"><strong>#1 Park West</strong></td>
+      <td>Only property confirmed to meet ALL 5 top priorities: studio ~$2,150–$2,450 all-in, 24hr gym, Westchester B+ safety, confirmed 4.0★ Google, underground parking. 4-mile / ~10-min commute.</td>
+    </tr>
+    <tr>
+      <td><strong>Best loft + space</strong></td>
+      <td class="yellow"><strong>#2 Playa Summit</strong></td>
+      <td>1-bd loft units at 700–960 sqft from $1,906/mo. Best square footage value. Confirm Google Maps rating before applying — ApartmentRatings staff score is concerning (1/5).</td>
+    </tr>
+    <tr>
+      <td><strong>Best if budget stretches to ~$2,650</strong></td>
+      <td class="yellow"><strong>#3 Playa Del Oro</strong></td>
+      <td>4.0★ Google, safe 90045, parking included, resort amenities. Studio is $2,514–$2,998 — just above target but parking is bundled in.</td>
+    </tr>
+    <tr>
+      <td><strong>Best new construction</strong></td>
+      <td class="red"><strong>#6 Kinley West LA</strong></td>
+      <td>Newest building, TechnoGym, Greystar management, safe Westchester. Over budget at $2,627+ but worth visiting to negotiate and check promo status.</td>
+    </tr>
+    <tr>
+      <td><strong>Closest to workplace</strong></td>
+      <td class="red"><strong>#5 Pacific Place</strong></td>
+      <td>Only 2 miles / 5 min drive. True loft with 24ft ceilings. Has 1 month free through 5/23. FAILS 4.0★ requirement (3.9) — ask them to show Google Maps rating before deciding.</td>
+    </tr>
+    <tr>
+      <td><strong>Dream pick (budget permitting)</strong></td>
+      <td class="red"><strong>#7 Runway Playa Vista</strong></td>
+      <td>18ft 2-story lofts, 2 gyms, 8 weeks free. Over budget &amp; no parking currently, C safety. Worth revisiting if budget or parking situation changes.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ═══════════════════════════════════════════════════
+     DATA NOTES
+═══════════════════════════════════════════════════ -->
+<h2>Data Sources &amp; Notes</h2>
+<ul style="font-size:12px;color:#444;line-height:1.7;">
+  <li><strong>Rent prices</strong> sourced from Apartments.com, Zumper, ForRent.com, and Zillow (May 2026). Prices change — verify directly with leasing offices before visiting.</li>
+  <li><strong>Google ratings</strong> confirmed for Park West (4.0★) and Playa Del Oro (4.0★) via Google Maps data. Others marked "unconfirmed" — always verify on Google Maps before shortlisting.</li>
+  <li><strong>Safety scores</strong> based on CrimeGrade.org data: Westchester B+ (30.31 crime/1,000), El Segundo B+ (33.73/1,000), Playa Vista C (38.97/1,000), Marina del Rey D- (42.09/1,000).</li>
+  <li><strong>Drive times</strong> are non-rush-hour estimates to 470 N Aviation Blvd, El Segundo. All shortlisted properties are well within the 35–40 min requirement. Actual rush-hour times may add 10–20 min on I-405 or Lincoln Blvd — test the commute in person.</li>
+  <li><strong>Total cost estimate</strong> = base rent + parking est. + $100–$150/mo utilities (electric, internet, where not bundled). Water/trash often included by landlord.</li>
+  <li><strong>Parking costs</strong> for Park West and Playa Summit not publicly listed — call the leasing office to confirm. Playa Del Oro includes 1 space in rent.</li>
+  <li>This research was conducted in May 2026. Availability changes rapidly. Schedule tours promptly for properties of interest.</li>
+</ul>
+
+<footer>
+  Research compiled: May 22, 2026 &nbsp;|&nbsp; Repo: github.com/MekaSaiKrishna/housefindingLA
+</footer>
+
+</body>
+</html>

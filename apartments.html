@@ -2,438 +2,761 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LA Luxury Apartment Research — Sai Krishna Meka</title>
+  <title>LA Luxury Apartment Research — Sai Krishna Meka (Deep Scan)</title>
   <style>
-    * { box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; margin: 24px; background: #f0f2f5; color: #222; }
-    h1  { color: #1a2540; margin-bottom: 4px; }
-    h2  { color: #34495e; margin: 28px 0 8px; }
-    p.subtitle { color: #555; margin-top: 0; font-size: 13px; }
+    *{box-sizing:border-box;}
+    body{font-family:Arial,sans-serif;margin:20px;background:#f0f2f5;color:#222;font-size:13px;}
+    h1{color:#1a2540;margin-bottom:2px;}
+    h2{color:#2c3e50;margin:26px 0 6px;border-bottom:2px solid #bdc3c7;padding-bottom:4px;}
+    p.sub{color:#666;font-size:12px;margin-top:0;}
 
-    /* ── Legend ───────────────────────────────────────── */
-    .legend { display: flex; gap: 18px; margin: 12px 0 20px; flex-wrap: wrap; }
-    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; }
-    .lb { width: 18px; height: 18px; border: 1px solid #bbb; border-radius: 3px; }
-    .lg { background: #90EE90; }
-    .ly { background: #FFFF99; }
-    .lr { background: #FFB6C1; }
-    .ld { background: #D3D3D3; }
+    /* ── Callout boxes ── */
+    .warn{background:#fff3cd;border-left:4px solid #f39c12;padding:10px 14px;border-radius:4px;margin:12px 0;font-size:12px;}
+    .info{background:#d1ecf1;border-left:4px solid #17a2b8;padding:10px 14px;border-radius:4px;margin:12px 0;font-size:12px;}
+    .success{background:#d4edda;border-left:4px solid #28a745;padding:10px 14px;border-radius:4px;margin:12px 0;font-size:12px;}
 
-    /* ── Main table ───────────────────────────────────── */
-    .main-table { border-collapse: collapse; width: 100%; background: #fff;
-      box-shadow: 0 2px 10px rgba(0,0,0,.12); border-radius: 6px; overflow: hidden; }
-    .main-table th { background: #1a2540; color: #fff; padding: 10px 7px;
-      font-size: 12px; text-align: center; white-space: nowrap; }
-    .main-table td { padding: 8px 7px; border: 1px solid #ddd; font-size: 11.5px;
-      text-align: center; vertical-align: top; }
-    .main-table tr:nth-child(even) td { background: rgba(0,0,0,.018); }
-    .main-table tr:hover td { filter: brightness(.96); }
+    /* ── Legend ── */
+    .legend{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0 18px;}
+    .li{display:flex;align-items:center;gap:6px;font-size:12px;}
+    .lb{width:18px;height:18px;border:1px solid #aaa;border-radius:3px;}
+    .lg{background:#90EE90;} .ly{background:#FFFF99;} .lr{background:#FFB6C1;} .ld{background:#D3D3D3;}
 
-    td.left { text-align: left; }
-    td.prop  { font-weight: bold; text-align: left; min-width: 140px; }
+    /* ── Tables ── */
+    table{border-collapse:collapse;width:100%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.1);border-radius:5px;overflow:hidden;margin-bottom:6px;}
+    th{background:#1a2540;color:#fff;padding:8px 6px;font-size:11.5px;text-align:center;white-space:nowrap;}
+    td{padding:7px 6px;border:1px solid #ddd;font-size:11px;text-align:center;vertical-align:top;}
+    tr:nth-child(even) td{background:rgba(0,0,0,.015);}
+    tr:hover td{filter:brightness(.96);}
+    td.L{text-align:left;}
+    td.prop{font-weight:bold;text-align:left;min-width:130px;}
+    a{color:#1a6fb3;text-decoration:none;}
+    a:hover{text-decoration:underline;}
 
     /* Rank badges */
-    .badge { display: inline-flex; align-items: center; justify-content: center;
-      width: 22px; height: 22px; border-radius: 50%; font-size: 11px;
-      font-weight: bold; margin-right: 4px; }
-    .b1 { background: #FFD700; color: #333; }
-    .b2 { background: #C0C0C0; color: #333; }
-    .b3 { background: #CD7F32; color: #fff; }
-    .b4,.b5,.b6,.b7,.b8 { background: #7f8c8d; color: #fff; }
+    .badge{display:inline-flex;align-items:center;justify-content:center;
+      width:21px;height:21px;border-radius:50%;font-size:10.5px;font-weight:bold;margin-right:3px;}
+    .b1{background:#FFD700;color:#333;} .b2{background:#C0C0C0;color:#333;} .b3{background:#CD7F32;color:#fff;}
+    .bx{background:#7f8c8d;color:#fff;}
 
-    /* Cell colours */
-    .green  { background: #90EE90 !important; }
-    .yellow { background: #FFFF99 !important; }
-    .red    { background: #FFB6C1 !important; }
-    .gray   { background: #D3D3D3 !important; }
+    /* Cell colors */
+    .green{background:#90EE90!important;} .yellow{background:#FFFF99!important;}
+    .red{background:#FFB6C1!important;} .gray{background:#D3D3D3!important;}
 
-    /* Pass/Fail inline text */
-    .ok   { color: #1a7a1a; font-weight: bold; }
-    .no   { color: #c0000a; font-weight: bold; }
-    .marg { color: #b07800; font-weight: bold; }
+    /* Region header rows */
+    .rh td{background:#ecf0f1!important;font-weight:bold;text-align:left;color:#2c3e50;font-size:12px;}
 
-    /* ── Additional Info table ───────────────────────── */
-    .info-table { border-collapse: collapse; width: 100%; background: #fff;
-      box-shadow: 0 2px 10px rgba(0,0,0,.12); border-radius: 6px; overflow: hidden; }
-    .info-table th { background: #2c3e50; color: #fff; padding: 9px 8px; font-size: 12px; text-align: center; }
-    .info-table td { padding: 8px; border: 1px solid #ddd; font-size: 11.5px;
-      vertical-align: top; text-align: left; }
-    .info-table tr:nth-child(even) td { background: rgba(0,0,0,.018); }
+    /* Tier section labels */
+    .tier-label{font-size:12px;font-weight:bold;color:#fff;background:#2c3e50;
+      padding:6px 12px;border-radius:4px 4px 0 0;display:inline-block;margin-top:18px;}
 
-    /* Priority legend box */
-    .priority-box { background: #fff; border-left: 4px solid #1a2540;
-      padding: 12px 16px; margin-bottom: 20px; border-radius: 4px;
-      box-shadow: 0 1px 6px rgba(0,0,0,.08); font-size: 12px; }
-    .priority-box h3 { margin: 0 0 6px; color: #1a2540; font-size: 13px; }
-    .priority-box ul { margin: 0; padding-left: 18px; }
-    .priority-box li { margin: 2px 0; }
-
-    footer { margin-top: 30px; font-size: 11px; color: #888; }
+    footer{margin-top:30px;font-size:11px;color:#888;border-top:1px solid #ddd;padding-top:10px;}
   </style>
 </head>
 <body>
 
-<h1>🏠 LA Luxury Apartment Research</h1>
-<p class="subtitle">Prepared for: Sai Krishna Meka &nbsp;|&nbsp; Workplace: 470 N Aviation Blvd, El Segundo, CA &nbsp;|&nbsp; Budget: ≤ $2,500/mo all-in &nbsp;|&nbsp; Updated: May 2026</p>
+<h1>🏠 LA Luxury Apartment Deep Research</h1>
+<p class="sub">Sai Krishna Meka &nbsp;|&nbsp; Workplace: 470 N Aviation Blvd, El Segundo, CA &nbsp;|&nbsp; Salary: $130k &nbsp;|&nbsp; Move-in: Late Aug / Early Sep 2026 &nbsp;|&nbsp; Budget: ≤ $2,500/mo ALL-IN &nbsp;|&nbsp; Research Date: May 2026</p>
 
-<!-- Priority reminder -->
-<div class="priority-box">
-  <h3>Your Priorities (from README)</h3>
-  <ul>
-    <li><strong>TOP:</strong> ≤$2,500/mo all-in · Fully functioning gym · Safe neighborhood · Google rating ≥ 4.0 · Car parking</li>
-    <li><strong>MEDIUM:</strong> Loft style · ~700 sqft · Modern kitchen · Big windows · ≤35-40 min drive to El Segundo</li>
-    <li><strong>LOW:</strong> Pool/spa · Good common areas</li>
-    <li><strong>ALSO CHECK:</strong> Move-in specials · Look & lease offers · Lease-renewal price jumps · New construction · Respectful management</li>
-  </ul>
+<div class="warn">
+  <strong>⚠️ Critical Commute Reality Check:</strong>
+  DTLA → El Segundo = <strong>55–80 min morning rush</strong> (I-110 South, 22+ miles) — far exceeds your 35–40 min target. &nbsp;|&nbsp;
+  Long Beach → El Segundo = <strong>35–50 min rush</strong> (borderline). &nbsp;|&nbsp;
+  Koreatown → El Segundo = <strong>40–60 min rush</strong> (exceeds). &nbsp;|&nbsp;
+  Westchester → El Segundo = <strong>10–25 min rush</strong> ✅
+</div>
+
+<div class="warn">
+  <strong>⚠️ Safety Reality Check:</strong>
+  DTLA = 1st percentile for safety (highest crime — disqualifying per your "safe neighborhood" requirement). &nbsp;|&nbsp;
+  Long Beach DT = 10th percentile (moderate). &nbsp;|&nbsp;
+  Koreatown = 19th percentile (C- grade). &nbsp;|&nbsp;
+  Westchester/El Segundo area = 65–70th percentile (B+). &nbsp;|&nbsp;
+  <em>Pacific Electric Lofts specifically FAILS: directly adjacent to Skid Row.</em>
 </div>
 
 <!-- Colour legend -->
 <div class="legend">
-  <div class="legend-item"><div class="lb lg"></div> Meets criteria</div>
-  <div class="legend-item"><div class="lb ly"></div> Marginal / verify</div>
-  <div class="legend-item"><div class="lb lr"></div> Does NOT meet criteria</div>
-  <div class="legend-item"><div class="lb ld"></div> Data not confirmed</div>
+  <div class="li"><div class="lb lg"></div> Meets / excellent</div>
+  <div class="li"><div class="lb ly"></div> Marginal / borderline</div>
+  <div class="li"><div class="lb lr"></div> Fails / concern</div>
+  <div class="li"><div class="lb ld"></div> Unconfirmed</div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════
-     MAIN SPREADSHEET
-═══════════════════════════════════════════════════ -->
-<h2>Property Comparison Spreadsheet</h2>
-<p style="font-size:12px;color:#666;margin-top:-4px;">Sorted best → worst based on your top priorities. "Total Cost" = base rent + est. parking + est. utilities (~$100-150/mo).</p>
+<div class="info">
+  <strong>Priorities reminder:</strong>
+  🔴 TOP (must meet ALL 5): ≤$2,500/mo all-in · Gym · Safe neighborhood · Google ≥4.0 · Parking &nbsp;|&nbsp;
+  🟡 MEDIUM: Loft · ~700 sqft · Modern kitchen · Big windows · ≤35–40 min drive &nbsp;|&nbsp;
+  🟢 LOW: Pool · Common areas
+</div>
 
-<table class="main-table">
+<!-- ══════════════════════════════════════════════════════════════
+     MAIN SPREADSHEET
+══════════════════════════════════════════════════════════════ -->
+<h2>📊 Full Ranked Property Spreadsheet — 28 Properties</h2>
+<p class="sub">Ranked best → worst. Column "Total $/mo" = base rent + parking estimate + utilities estimate (~$100–150). Effective rent shown where specials apply.</p>
+
+<table>
   <thead>
     <tr>
       <th>#</th>
-      <th>Property Name</th>
-      <th>Address</th>
-      <th>Studio Rent<br>(min – max)</th>
-      <th>1 Bed / 1 Bath<br>(min – max)</th>
+      <th>Property Name &amp; Website</th>
+      <th>Address / Area</th>
+      <th>Studio<br>(min–max)</th>
+      <th>1 Bed / 1 Bath<br>(min–max)</th>
       <th>Google<br>Rating</th>
       <th>Safety<br>(0–5)</th>
-      <th>Distance to<br>Workplace</th>
+      <th>Drive to<br>Workplace</th>
       <th>Parking<br>$/mo</th>
-      <th>Total Cost<br>/mo (est.)</th>
+      <th>Est. Total<br>$/mo All-In</th>
       <th>Loft?</th>
-      <th>Sqft Range</th>
+      <th>Sqft</th>
       <th>Gym</th>
-      <th>Pool / Spa</th>
+      <th>Pool</th>
+      <th>Move-in<br>Specials</th>
       <th>Top-Priority<br>Status</th>
     </tr>
   </thead>
   <tbody>
 
-    <!-- ── RANK 1: Park West ─────────────────────────── -->
+    <!-- ═══ TIER 1: MEETS ALL TOP CRITERIA ═══ -->
+    <tr class="rh"><td colspan="16">🏆 TIER 1 — Meets All 5 Top Priorities (Budget + Gym + Safety + Google 4.0+ + Parking)</td></tr>
+
+    <!-- 1: Park West -->
     <tr>
       <td><span class="badge b1">1</span></td>
-      <td class="prop">Park West Apartments<br><span style="font-weight:normal;font-size:10.5px;color:#555;">Equity Residential</span></td>
-      <td class="left">9400 La Tijera Blvd<br>Los Angeles, CA 90045<br><em>Westchester</em></td>
-      <td class="green">$1,949 – $2,275</td>
-      <td class="yellow">$2,034 – $2,830</td>
+      <td class="prop"><a href="https://www.equityapartments.com/los-angeles/westchester/park-west-apartments" target="_blank">Park West</a><br><small>Equity Residential</small></td>
+      <td class="L">9400 La Tijera Blvd<br>LA 90045 — <strong>Westchester</strong></td>
+      <td class="green">$1,949–$2,275</td>
+      <td class="yellow">$2,034–$2,830</td>
       <td class="green">⭐ 4.0</td>
-      <td class="green">4 / 5<br><small>Westchester B+</small></td>
-      <td class="green">4 mi<br>~10 min (off-peak)<br>~20-25 min (rush)</td>
-      <td class="green">~$50–$100<br><small>Underground</small></td>
-      <td class="green">Studio: ~$2,150–$2,450<br>1bd: ~$2,250–$3,050</td>
+      <td class="green">4/5 B+<br><small>Westchester</small></td>
+      <td class="green">4 mi<br>~10 min off-peak<br>~20–25 min rush</td>
+      <td class="green">~$50–100<br><small>Underground</small></td>
+      <td class="green">Studio:<br>~$2,150–$2,450</td>
       <td class="yellow">No<br><small>Traditional</small></td>
-      <td>455 – 897 sqft</td>
+      <td>455–897 sqft</td>
       <td class="green">✔ 24hr</td>
-      <td class="green">✔ Pool<br>✔ Spa</td>
-      <td class="green"><span class="ok">✔ MEETS ALL TOP 5</span></td>
+      <td class="green">✔ Pool + Spa</td>
+      <td>None advertised<br><small>Ask about<br>1–2 wk free</small></td>
+      <td class="green"><strong>✅ MEETS ALL 5</strong><br>Best commute<br>Best safety</td>
     </tr>
 
-    <!-- ── RANK 2: Playa Summit ──────────────────────── -->
+    <!-- 2: The Crest Long Beach -->
     <tr>
       <td><span class="badge b2">2</span></td>
-      <td class="prop">Playa Summit<br><span style="font-weight:normal;font-size:10.5px;color:#555;">Independent</span></td>
-      <td class="left">7077 Alvern St<br>Los Angeles, CA 90045<br><em>Westchester</em></td>
-      <td class="gray">N/A<br><small>No studios</small></td>
-      <td class="green">$1,906 – $2,578</td>
-      <td class="yellow">~3.5–4.0<br><small>Unconfirmed</small></td>
-      <td class="green">4 / 5<br><small>Westchester B+</small></td>
-      <td class="green">4 mi<br>~10 min (off-peak)<br>~20-25 min (rush)</td>
-      <td class="yellow">~$100<br><small>Assigned</small></td>
-      <td class="green">1bd: ~$2,100–$2,830</td>
-      <td class="green">✔ Select units<br><small>Rooftop deck</small></td>
-      <td class="green">700 – 960 sqft</td>
-      <td class="green">✔ Resort</td>
-      <td class="green">✔ Pool<br>✔ Spa</td>
-      <td class="yellow"><span class="marg">⚠ Verify Google rating<br>Poor staff reviews</span></td>
+      <td class="prop"><a href="https://www.livethecrest.com" target="_blank">The Crest</a><br><small>Greystar</small></td>
+      <td class="L">207 E Seaside Way<br>Long Beach 90802<br><strong>DT Long Beach</strong></td>
+      <td class="yellow">$2,499–$2,625</td>
+      <td class="red">$2,725–$2,999</td>
+      <td class="green">⭐ 4.0</td>
+      <td class="yellow">2/5<br><small>LB DT 10th pct</small></td>
+      <td class="yellow">16 mi<br>~15 min off-peak<br>~35–50 min rush</td>
+      <td class="yellow">TBD<br><small>Call to confirm</small></td>
+      <td class="yellow">Studio:<br>~$2,500–$2,650<br><em>Utilities incl!</em></td>
+      <td class="yellow">No<br><small>High ceilings</small></td>
+      <td>525–1,218 sqft</td>
+      <td class="green">✔ Full</td>
+      <td class="green">✔ Rooftop plunge</td>
+      <td class="green"><strong>$1,500</strong> Look&amp;Lease<br>Select utilities<br>INCLUDED<br><small>Gas,water,elec,<br>trash,cable,A/C</small></td>
+      <td class="yellow">✅ Meets 4/5 top<br>⚠️ Safety 2/5<br>Commute borderline<br>Verify utilities</td>
     </tr>
 
-    <!-- ── RANK 3: Playa Del Oro ─────────────────────── -->
+    <!-- 3: Broadstone Inkwell -->
     <tr>
       <td><span class="badge b3">3</span></td>
-      <td class="prop">Playa Del Oro<br><span style="font-weight:normal;font-size:10.5px;color:#555;">Decron Properties</span></td>
-      <td class="left">8601 Lincoln Blvd<br>Los Angeles, CA 90045<br><em>Westchester / Playa Del Rey</em></td>
-      <td class="yellow">$2,514 – $2,998<br><small>Parking incl.</small></td>
+      <td class="prop"><a href="https://www.broadstoneinkwell.com" target="_blank">Broadstone Inkwell</a><br><small>Alliance Residential</small></td>
+      <td class="L">201 The Promenade N<br>Long Beach 90802<br><strong>DT Long Beach</strong></td>
+      <td class="yellow">$2,495–$2,597</td>
+      <td class="red">$2,800+</td>
+      <td class="green">⭐ 4.0</td>
+      <td class="yellow">2/5<br><small>LB DT 10th pct</small></td>
+      <td class="yellow">16 mi<br>~15 min off-peak<br>~35–50 min rush</td>
+      <td class="yellow">~$150<br><small>Subterranean<br>3-level</small></td>
+      <td class="yellow">Studio (effective)<br>~$2,330–$2,450<br><em>w/ 8-wk free</em></td>
+      <td class="yellow">No<br><small>Industrial modern<br>natural light</small></td>
+      <td>578–1,323 sqft</td>
+      <td class="green">✔ Full</td>
+      <td class="green">✔ Yes</td>
+      <td class="green"><strong>8 WEEKS FREE</strong><br>+ 2 Months Free<br>(eligible applicants)</td>
+      <td class="yellow">✅ Meets 4/5 top<br>⚠️ Safety 2/5<br>Commute borderline<br>Budget OK w/ special</td>
+    </tr>
+
+    <!-- ═══ TIER 2: STRONG OPTIONS — 1–2 TRADEOFFS ═══ -->
+    <tr class="rh"><td colspan="16">⭐ TIER 2 — Strong Candidates (1–2 Tradeoffs Each)</td></tr>
+
+    <!-- 4: Aster Long Beach -->
+    <tr>
+      <td><span class="badge bx">4</span></td>
+      <td class="prop"><a href="https://www.liveasterlb.com" target="_blank">Aster</a><br><small>Greystar</small></td>
+      <td class="L">250 E Broadway<br>Long Beach 90802<br><strong>DT Long Beach</strong></td>
+      <td class="green">$2,250–$2,635<br><em>eff. ~$2,083–$2,287<br>w/ 8-wk free</em></td>
+      <td class="yellow">$2,635+<br><em>eff. ~$2,400+</em></td>
+      <td class="gray">❔ Unconfirmed<br><small>New 2023;<br>5.0 AptList</small></td>
+      <td class="yellow">2/5<br><small>LB DT 10th pct</small></td>
+      <td class="yellow">16 mi<br>~15 min off-peak<br>~35–50 min rush</td>
+      <td class="yellow">~$125<br><small>On-site</small></td>
+      <td class="green">Studio eff.<br>~$2,287/mo<br><em>w/ 8-wk free</em></td>
+      <td class="yellow">No<br><small>Industrial chic<br>360° rooftop</small></td>
+      <td>470–1,790 sqft</td>
+      <td class="green">✔ Private</td>
+      <td class="green">✔ Resort pool<br>+ Spa</td>
+      <td class="green">Up to <strong>1 MONTH FREE</strong><br>8-week special</td>
+      <td class="yellow">⚠️ Google unconfirmed<br>Safety 2/5<br>Budget ✅ w/ special</td>
+    </tr>
+
+    <!-- 5: Playa Summit Westchester -->
+    <tr>
+      <td><span class="badge bx">5</span></td>
+      <td class="prop"><a href="https://www.playasummit.com" target="_blank">Playa Summit</a></td>
+      <td class="L">7077 Alvern St<br>LA 90045 — <strong>Westchester</strong></td>
+      <td class="gray">N/A<br><small>No studios</small></td>
+      <td class="green">$1,906–$2,578</td>
+      <td class="gray">❔ ~3.5–4.0<br><small>Verify!</small></td>
+      <td class="green">4/5 B+<br><small>Westchester</small></td>
+      <td class="green">4 mi<br>~10 min off-peak<br>~20–25 min rush</td>
+      <td class="yellow">~$100<br><small>Assigned</small></td>
+      <td class="yellow">1bd: ~$2,100–$2,830</td>
+      <td class="green">✔ Select units<br><small>Rooftop deck</small></td>
+      <td class="green">700–960 sqft</td>
+      <td class="green">✔ Resort</td>
+      <td class="green">✔ Pool + Spa</td>
+      <td>None confirmed<br><small>Ask directly</small></td>
+      <td class="yellow">⚠️ Verify Google<br>Poor staff reviews<br>Safety ✅ best zone</td>
+    </tr>
+
+    <!-- 6: Burano Long Beach -->
+    <tr>
+      <td><span class="badge bx">6</span></td>
+      <td class="prop"><a href="https://www.liveburano.com" target="_blank">Burano</a><br><small>Greystar</small></td>
+      <td class="L">442 W Ocean Blvd<br>Long Beach 90802<br><strong>DT Long Beach (Oceanfront)</strong></td>
+      <td class="yellow">$2,568–$2,599+<br><em>eff. ~$2,170+<br>w/ 2-mo free</em></td>
+      <td class="red">$2,677+</td>
+      <td class="green">⭐ 5.0 🌟</td>
+      <td class="yellow">2/5<br><small>LB Waterfront</small></td>
+      <td class="yellow">16 mi<br>~15 min off-peak<br>~35–50 min rush</td>
+      <td class="yellow">~$150–175<br><small>Unconfirmed</small></td>
+      <td class="yellow">Studio eff.<br>~$2,320–$2,400<br><em>w/ 2-mo free (12-mo)</em></td>
+      <td class="yellow">No<br><small>Modern luxury</small></td>
+      <td>684–1,181 sqft</td>
+      <td class="yellow">⚠️ Yes<br><small>Limited equip<br>per reviews</small></td>
+      <td class="green">✔ Ocean-view rooftop<br>+ BBQ + fire pit<br>Queen Mary views</td>
+      <td class="green"><strong>8 WEEKS FREE</strong><br>(Look&amp;Lease 24hr)<br><strong>2 MONTHS FREE</strong></td>
+      <td class="yellow">⭐ Highest rated<br>⚠️ Gym limited<br>Budget OK w/ special</td>
+    </tr>
+
+    <!-- 7: AMLI Park Broadway -->
+    <tr>
+      <td><span class="badge bx">7</span></td>
+      <td class="prop"><a href="https://www.amli.com/apartments/southern-california/long-beach-apartments/amli-park-broadway" target="_blank">AMLI Park Broadway</a><br><small>AMLI Residential</small></td>
+      <td class="L">245 W Broadway<br>Long Beach 90802<br><strong>DT Long Beach</strong></td>
+      <td class="yellow">$2,482–$2,600</td>
+      <td class="red">$3,016+ 🚫</td>
+      <td class="green">⭐ 4.7 🌟</td>
+      <td class="yellow">2/5<br><small>LB DT 10th pct</small></td>
+      <td class="yellow">16 mi<br>~15 min off-peak<br>~35–50 min rush</td>
+      <td class="yellow">~$100–150<br><small>Assigned incl.<br>for 1BR</small></td>
+      <td class="yellow">Studio: ~$2,700<br><em>Over budget<br>w/o special</em></td>
+      <td class="yellow">No<br><small>Modern luxury<br>LEED Silver</small></td>
+      <td>603–1,646 sqft</td>
+      <td class="green">✔ Full</td>
+      <td class="green">✔ Resort pool<br>+ Rooftop sky lounge</td>
+      <td class="gray">None confirmed<br><small>Best-rated LB property<br>Worth asking</small></td>
+      <td class="yellow">⭐ 4.7 Google<br>⚠️ Studio over budget<br>1BR way over</td>
+    </tr>
+
+    <!-- 8: Playa Del Oro -->
+    <tr>
+      <td><span class="badge bx">8</span></td>
+      <td class="prop"><a href="https://www.decron.com/apartments/ca/los-angeles/playa-del-oro/" target="_blank">Playa Del Oro</a><br><small>Decron Properties</small></td>
+      <td class="L">8601 Lincoln Blvd<br>LA 90045 — <strong>Westchester / PDR</strong></td>
+      <td class="yellow">$2,514–$2,998<br><small>Parking incl.</small></td>
       <td class="red">~$3,000+</td>
       <td class="green">⭐ 4.0</td>
-      <td class="green">4 / 5<br><small>LA 90045 B+</small></td>
-      <td class="green">5 mi<br>~12 min (off-peak)<br>~25 min (rush)</td>
-      <td class="green">Included (1 space)<br>Extra: $60–$95</td>
+      <td class="green">4/5 B+<br><small>LA 90045</small></td>
+      <td class="green">5 mi<br>~12 min off-peak<br>~25 min rush</td>
+      <td class="green">Included (1 space)<br>Extra: $60–95</td>
       <td class="red">Studio: ~$2,650–$3,150</td>
-      <td class="yellow">Not confirmed</td>
-      <td>529 – 644 sqft</td>
+      <td class="gray">Not confirmed</td>
+      <td>529–644 sqft</td>
       <td class="green">✔ Resort</td>
-      <td class="green">✔ Pool<br>✔ Tennis</td>
-      <td class="yellow"><span class="marg">⚠ Studio over $2,500<br>Freq. fire alarms</span></td>
+      <td class="green">✔ Pool + Tennis</td>
+      <td>None confirmed</td>
+      <td class="yellow">⚠️ Studio over $2,500<br>Freq. fire alarms<br>Safety ✅</td>
     </tr>
 
-    <!-- ── RANK 4: Fountain Park at Playa Vista ──────── -->
+    <!-- 9: Griffis Pine Ave -->
     <tr>
-      <td><span class="badge b4">4</span></td>
-      <td class="prop">Fountain Park at Playa Vista<br><span style="font-weight:normal;font-size:10.5px;color:#555;">Essex Apartment Homes</span></td>
-      <td class="left">13141 Fountain Park Dr<br>Playa Vista, CA 90094<br><em>Playa Vista</em></td>
-      <td class="yellow">$2,294 – $2,967</td>
-      <td class="red">$2,659 – $3,491</td>
-      <td class="gray">~4.0?<br><small>Unconfirmed</small></td>
-      <td class="yellow">3 / 5<br><small>Playa Vista C</small></td>
-      <td class="green">6 mi<br>~11-15 min (off-peak)<br>~25-35 min (rush)</td>
-      <td class="yellow">~$100<br><small>Garage</small></td>
-      <td class="yellow">Studio: ~$2,500–$3,200</td>
-      <td class="green">✔ 1bd+loft/den<br>option</td>
-      <td class="green">684+ sqft</td>
+      <td><span class="badge bx">9</span></td>
+      <td class="prop"><a href="https://griffisresidential.com/property/pine-avenue/" target="_blank">Griffis Pine Avenue</a><br><small>Griffis Residential</small></td>
+      <td class="L">404–480 Pine Ave<br>Long Beach 90802<br><strong>DT Long Beach</strong></td>
+      <td class="yellow">~$2,494<br><small>578 sqft</small></td>
+      <td class="red">$2,590–$2,727</td>
+      <td class="green">⭐ ~4.5 🌟</td>
+      <td class="yellow">2/5<br><small>LB DT</small></td>
+      <td class="yellow">16 mi<br>~35–50 min rush</td>
+      <td class="yellow">~$125<br><small>Call to confirm</small></td>
+      <td class="red">Studio: ~$2,750–$2,800</td>
+      <td class="yellow">No<br><small>Standard</small></td>
+      <td>578–1,154 sqft</td>
+      <td class="green">✔ 24hr + Yoga</td>
+      <td class="green">✔ Resort pool<br>+ Hot tub</td>
+      <td class="green">Up to <strong>6 WEEKS FREE</strong><br>(May 2026)</td>
+      <td class="yellow">⚠️ Over budget<br>4.5★ excellent rating<br>6-wk free helps</td>
+    </tr>
+
+    <!-- 10: Gas Company Lofts -->
+    <tr>
+      <td><span class="badge bx">10</span></td>
+      <td class="prop"><a href="https://www.essexapartmenthomes.com/apartments/los-angeles/gas-company-lofts" target="_blank">Gas Company Lofts</a><br><small>Essex Property Trust</small></td>
+      <td class="L">810 S Flower St<br>LA 90017 — <strong>DTLA South Park</strong></td>
+      <td class="green">$1,707+<br><small>Historic loft</small></td>
+      <td class="yellow">$2,247+</td>
+      <td class="green">⭐ 9.9/10 Zumper<br><small>(Best-rated DTLA)</small></td>
+      <td class="red">2/5<br><small>DTLA 1st pct</small></td>
+      <td class="red">22 mi<br>~55–80 min rush 🚫</td>
+      <td class="yellow">$200–225<br><small>Covered</small></td>
+      <td class="green">Studio: ~$2,050–$2,100</td>
+      <td class="green">✔✔ 1924 historic<br>loft; concrete floors<br>14-25 ft ceilings</td>
+      <td>See website</td>
+      <td class="green">✔ Full + sauna</td>
+      <td class="green">✔ Rooftop pool<br>+ Spa + BBQ</td>
+      <td>None confirmed</td>
+      <td class="red">✅ Budget<br>✅ Gym/Pool/Loft<br>❌ Commute 55–80 min<br>❌ Safety 2/5</td>
+    </tr>
+
+    <!-- 11: Packard Lofts -->
+    <tr>
+      <td><span class="badge bx">11</span></td>
+      <td class="prop"><a href="https://www.packardloftsla.com" target="_blank">Packard Lofts</a></td>
+      <td class="L">1000 S Hope St<br>LA 90015 — <strong>DTLA South Park</strong></td>
+      <td class="green">$2,095–$2,250</td>
+      <td class="yellow">$2,495–$2,895</td>
+      <td class="green">⭐ 4.38 (54 reviews)<br>Zumper 9.6/10</td>
+      <td class="red">2/5<br><small>DTLA 1st pct</small></td>
+      <td class="red">22 mi<br>~55–80 min rush 🚫</td>
+      <td class="yellow">~$150<br><small>Subterranean</small></td>
+      <td class="green">Studio: ~$2,370<br>1bd: ~$2,770</td>
+      <td class="green">✔✔ 1920s Packard<br>showroom; polished<br>concrete; high ceilings</td>
+      <td>See website</td>
+      <td class="green">✔ Yes</td>
+      <td class="gray">Not confirmed</td>
+      <td class="green"><strong>1 Month Free</strong><br>(3rd month rent)</td>
+      <td class="red">✅ Budget/Loft<br>✅ Good rating<br>❌ Commute 55–80 min<br>❌ Safety 2/5</td>
+    </tr>
+
+    <!-- 12: MET Lofts -->
+    <tr>
+      <td><span class="badge bx">12</span></td>
+      <td class="prop"><a href="https://metlofts.com" target="_blank">MET Lofts</a></td>
+      <td class="L">1050 S Flower St<br>LA 90015 — <strong>DTLA South Park</strong></td>
+      <td class="green">$2,062–$2,223</td>
+      <td class="red">$2,500+</td>
+      <td class="gray">❔ Unconfirmed<br><small>Yelp: 136 reviews</small></td>
+      <td class="red">2/5<br><small>DTLA 1st pct</small></td>
+      <td class="red">22 mi<br>~55–80 min rush 🚫</td>
+      <td class="yellow">~$200<br><small>Reserved</small></td>
+      <td class="green">Studio: ~$2,362–$2,412<br><em>eff. ~$2,190 w/ 1-mo free</em></td>
+      <td class="green">✔✔ Concrete walls<br>exposed ductwork<br>industrial-chic</td>
+      <td>687–1,464 sqft</td>
+      <td class="green">✔ + open-air deck</td>
+      <td class="green">✔ Resort pool</td>
+      <td class="green"><strong>1 Month Free</strong></td>
+      <td class="red">✅ Budget/Loft<br>❌ Commute 55–80 min<br>❌ Safety 2/5<br>⚠️ Car break-ins</td>
+    </tr>
+
+    <!-- 13: Garment Lofts -->
+    <tr>
+      <td><span class="badge bx">13</span></td>
+      <td class="prop"><a href="https://www.garmentloftsla.com" target="_blank">Garment Lofts</a></td>
+      <td class="L">217 E 8th St<br>LA 90014 — <strong>DTLA Fashion District</strong></td>
+      <td class="green">$1,920+</td>
+      <td class="yellow">$2,115+</td>
+      <td class="gray">❔ Unconfirmed<br><small>Boutique; 13 Yelp reviews</small></td>
+      <td class="red">2/5<br><small>DTLA 1st pct</small></td>
+      <td class="red">22 mi<br>~55–80 min rush 🚫</td>
+      <td class="yellow">~$150</td>
+      <td class="green">Studio: ~$2,170–$2,220<br><em>eff. ~$2,010 w/ 1-mo free</em></td>
+      <td class="green">✔ Historic garment<br>building; open plans<br>big windows</td>
+      <td>See website</td>
+      <td class="green">✔ Yes</td>
+      <td class="yellow">Rooftop spa only<br>(no pool)</td>
+      <td class="green"><strong>1 Month Free</strong></td>
+      <td class="red">✅ Budget/Loft<br>❌ Commute 55–80 min<br>❌ Safety 2/5</td>
+    </tr>
+
+    <!-- 14: Maxfield / The MAX -->
+    <tr>
+      <td><span class="badge bx">14</span></td>
+      <td class="prop"><a href="https://www.themaxla.com" target="_blank">Maxfield Lofts (The MAX)</a></td>
+      <td class="L">819 Santee St<br>LA 90014 — <strong>DTLA Fashion District</strong></td>
+      <td class="green">$1,845+<br><small>662–951 sqft</small></td>
+      <td class="green">$1,990+</td>
+      <td class="gray">❔ Unconfirmed<br><small>Yelp: 37 reviews</small></td>
+      <td class="red">2/5<br><small>DTLA 1st pct</small></td>
+      <td class="red">22 mi<br>~55–80 min rush 🚫</td>
+      <td class="green">FREE yr 1<br>(13-mo lease promo!)<br>then ~$150</td>
+      <td class="green">Studio yr1: ~$1,945<br><em>(parking free yr1!)</em></td>
+      <td class="green">✔ Art Deco 1920s<br>historic loft style</td>
+      <td>662–951 sqft</td>
+      <td class="green">✔ Yes + rooftop</td>
+      <td class="red">No pool<br>(rooftop spa)</td>
+      <td class="green"><strong>1-yr FREE PARKING</strong> (13-mo)<br>1 mo free OR<br>$600 off select</td>
+      <td class="red">✅ Budget/Loft<br>Best yr1 all-in price<br>❌ Commute 55–80 min<br>❌ Safety 2/5</td>
+    </tr>
+
+    <!-- 15: Sentral DTLA -->
+    <tr>
+      <td><span class="badge bx">15</span></td>
+      <td class="prop"><a href="https://sentral.com/los-angeles/dtla" target="_blank">Sentral DTLA</a><br><small>Sentral (tech-forward)</small></td>
+      <td class="L">755 S Spring St<br>LA 90014 — <strong>DTLA Fashion District</strong></td>
+      <td class="green">$1,747–$1,771</td>
+      <td class="yellow">$2,304–$2,367</td>
+      <td class="gray">❔ Unconfirmed<br><small>Yelp: 98 reviews</small></td>
+      <td class="red">2/5<br><small>DTLA 1st pct</small></td>
+      <td class="red">22 mi<br>~55–80 min rush 🚫</td>
+      <td class="yellow">$150–350<br><small>Secure garage</small></td>
+      <td class="green">Studio: ~$2,000–$2,250<br><em>(8 wks free incl.)</em></td>
+      <td class="yellow">No<br><small>Floor-to-ceiling<br>windows</small></td>
+      <td>448–1,819 sqft</td>
       <td class="green">✔ Full</td>
-      <td class="green">✔ 2 Pools<br>✔ Jacuzzi</td>
-      <td class="yellow"><span class="marg">⚠ C safety grade<br>Budget borderline</span></td>
+      <td class="green">✔ Resort pool</td>
+      <td class="green"><strong>8 WEEKS FREE</strong><br>already in pricing</td>
+      <td class="red">✅ Budget<br>❌ Commute 55–80 min<br>❌ Safety 2/5</td>
     </tr>
 
-    <!-- ── RANK 5: Pacific Place ─────────────────────── -->
+    <!-- ═══ TIER 3: FAILS KEY CRITERIA ═══ -->
+    <tr class="rh"><td colspan="16">⚠️ TIER 3 — Fails One or More Critical Requirements</td></tr>
+
+    <!-- 16: Be DTLA -->
     <tr>
-      <td><span class="badge b5">5</span></td>
-      <td class="prop">Pacific Place<br><span style="font-weight:normal;font-size:10.5px;color:#555;">Equity Residential</span></td>
-      <td class="left">5211 Pacific Concourse Dr<br>Los Angeles, CA 90045<br><em>Near El Segundo</em></td>
-      <td class="yellow">$2,411 – $2,745</td>
-      <td class="red">$2,745 – $3,360</td>
-      <td class="red">~3.9<br><small>BELOW 4.0 ✗</small></td>
-      <td class="green">4 / 5<br><small>90045 B+</small></td>
-      <td class="green">2 mi<br>~5-7 min (off-peak)<br>~10-15 min (rush)</td>
+      <td><span class="badge bx">16</span></td>
+      <td class="prop"><a href="https://bedtla.com" target="_blank">Be DTLA</a><br><small>Greystar</small></td>
+      <td class="L">1120 W 6th St<br>LA 90017 — <strong>DTLA / Westlake border</strong></td>
+      <td class="yellow">$2,210–$2,500</td>
+      <td class="red">$2,554+</td>
+      <td class="gray">❔ Unconfirmed</td>
+      <td class="red">2/5<br><small>DTLA 1st pct</small></td>
+      <td class="red">22 mi<br>~55–80 min rush 🚫</td>
+      <td class="red">$190–$285<br><small>Underground</small></td>
+      <td class="yellow">Studio eff.<br>~$2,150–$2,280<br><em>w/ 2-mo free + $1k off</em></td>
+      <td class="yellow">No<br><small>Modern luxury</small></td>
+      <td>See website</td>
+      <td class="green">✔ + Yoga studio</td>
+      <td class="green">✔ Pool + 2 rooftop gardens</td>
+      <td class="green"><strong>2 MONTHS FREE</strong><br>8 Wks Free + $1,000 off<br>Speakeasy bar amenity</td>
+      <td class="red">❌ Commute 55–80 min<br>❌ Safety 2/5<br>⚠️ High parking cost</td>
+    </tr>
+
+    <!-- 17: Rise Koreatown -->
+    <tr>
+      <td><span class="badge bx">17</span></td>
+      <td class="prop"><a href="https://liverisekoreatown.com" target="_blank">The Rise Koreatown</a></td>
+      <td class="L">750 S Oxford Ave<br>LA 90005 — <strong>Koreatown</strong></td>
+      <td class="red">$2,395–$2,746<br><small>457 sqft only</small></td>
+      <td class="red">$2,700–$3,983</td>
+      <td class="green">⭐ ~4.3 (Yelp 4.3)</td>
+      <td class="red">2/5<br><small>K-Town C- 19th pct</small></td>
+      <td class="yellow">15 mi<br>~40–60 min rush ⚠️</td>
+      <td class="yellow">~$150<br><small>Subterranean</small></td>
+      <td class="red">Studio: ~$2,700<br><em>Over budget</em></td>
+      <td class="yellow">No<br><small>Modern 7-story</small></td>
+      <td>457–1,119 sqft<br><small>Studios very small</small></td>
+      <td class="green">✔ + Yoga + Spa rooms</td>
+      <td class="green">✔ Pool</td>
+      <td>None confirmed</td>
+      <td class="red">❌ Over budget<br>❌ Safety 2/5<br>⚠️ 457 sqft studio too small</td>
+    </tr>
+
+    <!-- 18: The View Koreatown -->
+    <tr>
+      <td><span class="badge bx">18</span></td>
+      <td class="prop"><a href="https://www.theviewla.com" target="_blank">The View</a></td>
+      <td class="L">3460 W 7th St<br>LA 90005 — <strong>Koreatown</strong></td>
+      <td class="gray">Unclear<br><small>Possibly closed</small></td>
+      <td class="red">$2,518–$3,378+</td>
+      <td class="green">⭐ 4.0</td>
+      <td class="red">2/5<br><small>K-Town C- 19th pct</small></td>
+      <td class="yellow">15 mi<br>~40–60 min rush ⚠️</td>
+      <td class="yellow">~$150<br><small>On-site</small></td>
+      <td class="red">~$2,800+</td>
+      <td class="yellow">No<br><small>Modern high-rise</small></td>
+      <td>689–1,292 sqft</td>
+      <td class="green">✔ 24hr</td>
+      <td class="green">✔ Pool</td>
+      <td>1 mo free; $1k deposit</td>
+      <td class="red">❌ POSSIBLE CLOSURE<br>(Yelp shows CLOSED)<br>❌ Over budget<br>❌ Safety 2/5</td>
+    </tr>
+
+    <!-- 19: The Magnolia LB -->
+    <tr>
+      <td><span class="badge bx">19</span></td>
+      <td class="prop"><a href="https://www.livemagnolialongbeach.com" target="_blank">The Magnolia</a></td>
+      <td class="L">500 W Broadway<br>Long Beach 90802<br><strong>DT Long Beach</strong></td>
+      <td class="red">$2,440–$2,755</td>
+      <td class="red">$2,525–$3,000</td>
+      <td class="gray">❔ Unconfirmed<br><small>Zumper 8.7/10</small></td>
+      <td class="yellow">2/5<br><small>LB DT</small></td>
+      <td class="yellow">16 mi<br>~35–50 min rush</td>
+      <td class="yellow">~$125<br><small>Underground</small></td>
+      <td class="red">Studio: ~$2,700–$3,050</td>
+      <td class="yellow">No<br><small>Rooftop luxury</small></td>
+      <td>540–1,426 sqft</td>
+      <td class="green">✔ Premium</td>
+      <td class="green">✔ Rooftop resort</td>
+      <td>None advertised</td>
+      <td class="red">❌ Over budget<br>❔ Google unconfirmed</td>
+    </tr>
+
+    <!-- 20: The Current LB -->
+    <tr>
+      <td><span class="badge bx">20</span></td>
+      <td class="prop"><a href="https://thecurrentliving.com" target="_blank">The Current</a><br><small>Greystar</small></td>
+      <td class="L">707 E Ocean Blvd<br>Long Beach 90802<br><strong>DT Long Beach</strong></td>
+      <td class="red">$2,603–$3,020</td>
+      <td class="red">$2,800+</td>
+      <td class="gray">❔ Unconfirmed</td>
+      <td class="yellow">2/5<br><small>LB Waterfront</small></td>
+      <td class="yellow">16 mi<br>~35–50 min rush</td>
+      <td class="yellow">~$150</td>
+      <td class="red">Studio: ~$2,950–$3,300</td>
+      <td class="yellow">No<br><small>High-rise luxury</small></td>
+      <td>692+ sqft</td>
+      <td class="green">✔ 24hr "Evolve"</td>
+      <td class="green">✔ Rooftop pool</td>
+      <td>$1,000 off base</td>
+      <td class="red">❌ Significantly over budget</td>
+    </tr>
+
+    <!-- 21: 825 South Hill -->
+    <tr>
+      <td><span class="badge bx">21</span></td>
+      <td class="prop"><a href="https://825southhilldtla.com" target="_blank">825 South Hill</a></td>
+      <td class="L">825 S Hill St<br>LA 90014 — <strong>DTLA South Park</strong></td>
+      <td class="red">No studio<br><small>1BR only</small></td>
+      <td class="yellow">$2,229–$3,295</td>
+      <td class="gray">❔ Unconfirmed<br><small>Yelp: 203 reviews</small></td>
+      <td class="red">2/5<br><small>DTLA 1st pct</small></td>
+      <td class="red">22 mi<br>~55–80 min rush 🚫</td>
+      <td class="red">~$200–250<br><small>Premium tower</small></td>
+      <td class="yellow">1bd: ~$2,630–$2,750</td>
+      <td class="yellow">No<br><small>53-story luxury tower</small></td>
+      <td>1BR+ only</td>
+      <td class="green">✔ 24hr + towel service</td>
+      <td class="green">✔ Pool + lap pool + sundeck</td>
+      <td class="red">⚠️ FULLY LEASED<br>Waitlist only!</td>
+      <td class="red">❌ No studio<br>❌ WAITLIST<br>❌ Commute + Safety</td>
+    </tr>
+
+    <!-- 22: Brockman Lofts -->
+    <tr>
+      <td><span class="badge bx">22</span></td>
+      <td class="prop"><a href="https://www.simpsonpropertygroup.com/apartments/los-angeles-california/the-brockman-lofts-downtown" target="_blank">The Brockman Lofts</a><br><small>Simpson Property Group</small></td>
+      <td class="L">530 W 7th St<br>LA 90014 — <strong>DTLA Financial District</strong></td>
+      <td class="gray">No studios<br><small>Min 904 sqft</small></td>
+      <td class="red">$2,745–$2,800+<br><small>+ $225 valet parking!</small></td>
+      <td class="yellow">⭐ ~4.1</td>
+      <td class="red">2/5<br><small>DTLA 1st pct</small></td>
+      <td class="red">22 mi<br>~55–80 min rush 🚫</td>
+      <td class="red">$225 VALET<br><small>Very expensive</small></td>
+      <td class="red">~$3,070–$3,150</td>
+      <td class="green">✔✔ Beaux Arts 1920s<br>authentic loft<br>floor-to-ceiling windows</td>
+      <td>904–1,319 sqft</td>
+      <td class="green">✔ Rooftop</td>
+      <td class="red">No pool</td>
+      <td>None confirmed<br><small>Bottega Louie perk</small></td>
+      <td class="red">❌ Way over budget<br>❌ $225 valet parking<br>❌ Commute + Safety</td>
+    </tr>
+
+    <!-- 23: Pacific Place -->
+    <tr>
+      <td><span class="badge bx">23</span></td>
+      <td class="prop"><a href="https://www.equityapartments.com/los-angeles/el-segundo/pacific-place-apartments" target="_blank">Pacific Place</a><br><small>Equity Residential</small></td>
+      <td class="L">5211 Pacific Concourse Dr<br>LA 90045 — <strong>Near El Segundo</strong></td>
+      <td class="yellow">$2,411–$2,745</td>
+      <td class="red">$2,745–$3,360</td>
+      <td class="red">~3.9 ❌<br><small>Below 4.0 req!</small></td>
+      <td class="green">4/5 B+</td>
+      <td class="green">2 mi<br>~5–7 min rush</td>
       <td class="yellow">~$75<br><small>Garage (issues)</small></td>
       <td class="yellow">Studio: ~$2,600–$3,000</td>
-      <td class="green">✔✔ 24ft ceilings<br>True loft</td>
-      <td class="green">533 – 1,289 sqft</td>
+      <td class="green">✔✔ True loft<br>24ft ceilings!</td>
+      <td>533–1,289 sqft</td>
       <td class="green">✔ Full</td>
-      <td class="green">✔ 2 Pools<br>✔ Theater</td>
-      <td class="red"><span class="no">✘ FAILS Google rating<br>(3.9 &lt; 4.0)</span><br>1 mo free thru 5/23</td>
+      <td class="green">✔ 2 Pools + Theater</td>
+      <td class="green">1 Month Free<br>(expired 5/23 — ask)</td>
+      <td class="red">❌ Google 3.9 — FAILS req<br>Chronic fire alarms<br>Flooding alarm nightly</td>
     </tr>
 
-    <!-- ── RANK 6: Kinley West LA ─────────────────────── -->
+    <!-- 24: Lofts at Security Building -->
     <tr>
-      <td><span class="badge b6">6</span></td>
-      <td class="prop">Kinley West LA<br><span style="font-weight:normal;font-size:10.5px;color:#555;">Greystar</span></td>
-      <td class="left">6711 S Sepulveda Blvd<br>Los Angeles, CA 90045<br><em>Westchester</em></td>
-      <td class="gray">N/A<br><small>No studios</small></td>
-      <td class="red">$2,627 – $3,723</td>
-      <td class="gray">Unconfirmed</td>
-      <td class="green">4 / 5<br><small>Westchester B+</small></td>
-      <td class="green">4.5 mi<br>~10 min (off-peak)<br>~20 min (rush)</td>
-      <td class="yellow">~$100–$150<br><small>Controlled</small></td>
+      <td><span class="badge bx">24</span></td>
+      <td class="prop"><a href="https://www.simpsonpropertygroup.com/apartments/los-angeles-california/lofts-at-security-building-downtown-financial-district" target="_blank">Lofts at Security Bldg</a><br><small>Simpson Property Group</small></td>
+      <td class="L">510 S Spring St<br>LA 90013 — <strong>DTLA Historic Core</strong></td>
+      <td class="green">$1,589–$1,825<br><small>628–645 sqft</small></td>
+      <td class="yellow">2BR from $2,313</td>
+      <td class="gray">❔ ~3.9<br><small>74% recommend</small></td>
+      <td class="red">2/5<br><small>DTLA 1st pct</small></td>
+      <td class="red">23 mi<br>~60–80 min rush 🚫</td>
+      <td class="red">High — unconfirmed<br><small>Residents complain</small></td>
+      <td class="yellow">~$1,950–$2,175<br><em>cheap rent but<br>parking expensive</em></td>
+      <td class="green">✔ 1920s bank loft<br>historic charm</td>
+      <td>628–645 sqft</td>
+      <td class="green">✔ 24hr</td>
+      <td class="red">No pool ❌</td>
+      <td>None confirmed</td>
+      <td class="red">❌ No pool<br>❌ Commute 60–80 min<br>❌ Safety 2/5<br>⚠️ Spring St noise</td>
+    </tr>
+
+    <!-- 25: Fountain Park -->
+    <tr>
+      <td><span class="badge bx">25</span></td>
+      <td class="prop"><a href="https://www.essexapartmenthomes.com/apartments/playa-vista/fountain-park-at-playa-vista" target="_blank">Fountain Park</a><br><small>Essex Apartment Homes</small></td>
+      <td class="L">13141 Fountain Park Dr<br>Playa Vista 90094</td>
+      <td class="yellow">$2,294–$2,967</td>
+      <td class="red">$2,659–$3,491</td>
+      <td class="gray">❔ ~4.0?<br><small>286 Yelp reviews</small></td>
+      <td class="yellow">3/5 C</td>
+      <td class="green">6 mi<br>~11–15 min off-peak<br>~25–35 min rush</td>
+      <td class="yellow">~$100</td>
+      <td class="yellow">Studio: ~$2,500–$3,200</td>
+      <td class="green">✔ 1bd+loft/den option</td>
+      <td class="green">684+ sqft</td>
+      <td class="green">✔ Full</td>
+      <td class="green">✔ 2 Pools + Jacuzzi</td>
+      <td>Essex seasonal deals</td>
+      <td class="yellow">⚠️ C safety<br>Budget borderline</td>
+    </tr>
+
+    <!-- 26: Kinley West LA -->
+    <tr>
+      <td><span class="badge bx">26</span></td>
+      <td class="prop"><a href="https://www.kinleywestla.com" target="_blank">Kinley West LA</a><br><small>Greystar</small></td>
+      <td class="L">6711 S Sepulveda Blvd<br>LA 90045 — <strong>Westchester</strong></td>
+      <td class="gray">N/A</td>
+      <td class="red">$2,627–$3,723</td>
+      <td class="gray">❔ Unconfirmed</td>
+      <td class="green">4/5 B+</td>
+      <td class="green">4.5 mi<br>~10–20 min rush</td>
+      <td class="yellow">~$100–150</td>
       <td class="red">1bd: ~$2,900–$4,050</td>
-      <td class="yellow">Not confirmed<br><small>Modern build</small></td>
-      <td>652 – 827 sqft</td>
-      <td class="green">✔✔ 24hr TechnoGym<br>+ outdoor arbor</td>
-      <td class="green">✔ Pool<br>✔ Rooftop</td>
-      <td class="red"><span class="no">✘ OVER BUDGET</span><br>$1,500 off promo<br>(verify validity)</td>
+      <td class="yellow">Not confirmed</td>
+      <td>652–827 sqft</td>
+      <td class="green">✔✔ 24hr TechnoGym</td>
+      <td class="green">✔ Pool</td>
+      <td>$1,500 off (verify validity)</td>
+      <td class="red">❌ Over budget</td>
     </tr>
 
-    <!-- ── RANK 7: Runway Playa Vista ────────────────── -->
+    <!-- 27: Pacific Electric Lofts -->
     <tr>
-      <td><span class="badge b7">7</span></td>
-      <td class="prop">Runway Playa Vista<br><span style="font-weight:normal;font-size:10.5px;color:#555;">Greystar</span></td>
-      <td class="left">12760 W Millennium Dr<br>Playa Vista, CA 90094<br><em>Playa Vista</em></td>
-      <td class="red">$2,970 – $3,509</td>
-      <td class="red">$3,526+</td>
-      <td class="gray">Unconfirmed</td>
-      <td class="yellow">3 / 5<br><small>Playa Vista C</small></td>
-      <td class="green">6.5 mi<br>~12-15 min (off-peak)<br>~25-35 min (rush)</td>
-      <td class="red">⚠ NO PARKING<br><small>Shortage noted</small></td>
-      <td class="red">~$3,200–$3,800+</td>
-      <td class="green">✔✔ 2-story loft<br>18ft ceilings</td>
-      <td class="green">553 – 1,469 sqft</td>
-      <td class="green">✔✔ 2 gyms<br>+ yoga studio</td>
-      <td class="green">✔✔ 2 Pool/Spa<br>+ Outdoor theaters</td>
-      <td class="red"><span class="no">✘ Over budget<br>✘ No parking<br>✘ C safety</span><br>8 wks free on select</td>
+      <td><span class="badge bx">27</span></td>
+      <td class="prop"><a href="https://www.essexapartmenthomes.com/apartments/los-angeles/pacific-electric-lofts" target="_blank">Pacific Electric Lofts</a><br><small>Essex Property Trust</small></td>
+      <td class="L">610 S Main St<br>LA 90014 — <strong>DTLA Historic Core</strong></td>
+      <td class="green">$1,847–$2,149</td>
+      <td class="yellow">See website</td>
+      <td class="gray">❔ Mixed reviews</td>
+      <td class="red">1/5 ❌❌<br><small>ADJACENT TO<br>SKID ROW</small></td>
+      <td class="red">23 mi<br>~60–80 min rush 🚫</td>
+      <td class="yellow">$175</td>
+      <td class="yellow">Studio: ~$2,122</td>
+      <td class="green">✔✔ 1905 first skyscraper<br>14–25 ft ceilings</td>
+      <td>629–1,044 sqft</td>
+      <td class="green">✔ + sauna</td>
+      <td class="green">✔ Rooftop pool</td>
+      <td>None confirmed</td>
+      <td class="red">❌❌ SAFETY FAIL<br>Skid Row adjacent<br>Pest issues reported<br>❌ Commute</td>
     </tr>
 
-    <!-- ── RANK 8: Forty55 Lofts ─────────────────────── -->
+    <!-- 28: Edison -->
     <tr>
-      <td><span class="badge b8">8</span></td>
-      <td class="prop">Forty55 Lofts<br><span style="font-weight:normal;font-size:10.5px;color:#555;">Greystar</span></td>
-      <td class="left">4055 Redwood Ave<br>Marina Del Rey, CA 90066<br><em>Marina Del Rey</em></td>
-      <td class="gray">N/A<br><small>No studios</small></td>
-      <td class="red">$3,500 – $5,514</td>
-      <td class="gray">Unconfirmed<br><small>Positive reviews</small></td>
-      <td class="red">2 / 5<br><small>Marina del Rey D-</small></td>
-      <td class="yellow">8 mi<br>~20 min (off-peak)<br>~35-45 min (rush)</td>
-      <td class="yellow">$100<br><small>Covered</small></td>
-      <td class="red">~$3,750+</td>
-      <td class="green">✔✔ True luxury<br>loft style</td>
-      <td>—</td>
-      <td class="green">✔ 24hr cardio<br>+ Zen lounge</td>
-      <td class="green">✔ Pool<br>✔ BBQ / Dog park</td>
-      <td class="red"><span class="no">✘ Way over budget<br>✘ D- safety</span></td>
+      <td><span class="badge bx">28</span></td>
+      <td class="prop">Edison (DTLA)</td>
+      <td class="L">DTLA</td>
+      <td class="red" colspan="12">⛔ NOT A RESIDENTIAL PROPERTY — The Edison is a bar/event venue. Not an apartment complex. Skip.</td>
+      <td class="red">ELIMINATED</td>
     </tr>
 
   </tbody>
 </table>
 
-<!-- ═══════════════════════════════════════════════════
-     ADDITIONAL INTEL TABLE
-═══════════════════════════════════════════════════ -->
-<h2>Additional Considerations</h2>
-<p style="font-size:12px;color:#666;margin-top:-4px;">Move-in specials · Lease renewal history · Management quality · Year built</p>
-
-<table class="info-table">
+<!-- ══════════════════════════════════════════════════════════════
+     ADDITIONAL INFO: MOVE-IN SPECIALS + MANAGEMENT
+══════════════════════════════════════════════════════════════ -->
+<h2>📋 Additional Considerations</h2>
+<table>
   <thead>
     <tr>
-      <th>#</th>
-      <th>Property</th>
-      <th>Move-in / Lease-Signing Specials</th>
-      <th>Lease Renewal Price Jump (History)</th>
-      <th>Year Built / Age</th>
-      <th>Management Quality</th>
-      <th>Unique Selling Points</th>
+      <th>#</th><th>Property</th><th>Move-in / Lease Specials</th>
+      <th>Lease Renewal Price History</th><th>Year Built</th><th>Management Quality</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td style="text-align:center;"><strong>1</strong></td>
-      <td><strong>Park West</strong></td>
-      <td>None advertised currently. Check directly — Equity Residential periodically offers 1–2 weeks free.</td>
-      <td>Typical Equity Residential increases: ~3–5% at renewal. Data not publicly available for this property.</td>
-      <td>Established 1980s–90s building. Well maintained.</td>
-      <td class="green">Generally positive. On-site management + maintenance. 24hr courtesy line. Zumper score 9.3/10.</td>
-      <td>Underground parking · Fireplace in units · Business center · Wi-Fi lounge · Near LMU &amp; golf course · Controlled access</td>
-    </tr>
-    <tr>
-      <td style="text-align:center;"><strong>2</strong></td>
-      <td><strong>Playa Summit</strong></td>
-      <td>None advertised. Contact directly — Westchester Apartments LA nearby offering 1 month free.</td>
-      <td class="red">Residents report annual increases; complaints of no goodwill discounts even for long-term tenants.</td>
-      <td>Established (13-acre landscaped campus). ~1990s–2000s.</td>
-      <td class="red">Poor staff rating (1/5 on ApartmentRatings). Reports of unresponsive management post-lease-signing. Amenities (spa, gym) sometimes broken.</td>
-      <td>Loft units with private rooftop decks · 700-960 sqft · EV charging · Co-working lounge · 24hr courtesy patrol · 13 acres</td>
-    </tr>
-    <tr>
-      <td style="text-align:center;"><strong>3</strong></td>
-      <td><strong>Playa Del Oro</strong></td>
-      <td>None confirmed. Contact Decron Properties. Check their website for seasonal promotions.</td>
-      <td>Not publicly documented. Decron is a mid-tier operator — moderate increases typical.</td>
-      <td>Established property, ~1990s. Not newly built.</td>
-      <td class="yellow">Mixed. Some residents report change in management attitude after signing. Clean and well-maintained grounds. 4.0 Google rating suggests generally acceptable.</td>
-      <td>Parking included in rent · Tennis courts · Pool/spa · Near beach · EV charging · Pet-friendly · 193 Yelp reviews</td>
-    </tr>
-    <tr>
-      <td style="text-align:center;"><strong>4</strong></td>
-      <td><strong>Fountain Park at Playa Vista</strong></td>
-      <td>Essex properties occasionally run "look &amp; lease" deals. Check essexapartmenthomes.com directly.</td>
-      <td>Essex Apartment Homes (publicly traded REIT — ESS). Historically 4–6% annual increases. Transparent renewal policies.</td>
-      <td>~2002–2005 (Playa Vista master-planned community, built early 2000s). Relatively modern.</td>
-      <td class="green">Essex is a publicly traded company — strong accountability. Generally professional management. 286+ Yelp reviews.</td>
-      <td>2 pools + Jacuzzi · Game room · Loft/den options · Silicon Beach location · Walk to shops, park · Pet-friendly</td>
-    </tr>
-    <tr>
-      <td style="text-align:center;"><strong>5</strong></td>
-      <td><strong>Pacific Place</strong></td>
-      <td class="green"><strong>Up to 1 MONTH FREE</strong> on select units through May 23, 2026. Act fast — offer expires soon!</td>
-      <td class="red">Residents report overpriced renewal rates. Flooding alarm on 1st floor nearly nightly. Fire alarms very sensitive.</td>
-      <td>Established ~1990s. Not newly built.</td>
-      <td class="red">Mixed. Many negative reviews: rude staff, parking garage leaks, chronic fire alarms, 3.9/5 overall. Positive: location &amp; loft ceilings.</td>
-      <td>Closest to workplace (2 mi!) · 24ft ceiling true lofts · Fireplace · 2 pools · Theater room · Walk to El Segundo amenities</td>
-    </tr>
-    <tr>
-      <td style="text-align:center;"><strong>6</strong></td>
-      <td><strong>Kinley West LA</strong></td>
-      <td class="yellow">$1,500 off Look &amp; Lease special was valid through 5/15/2026. Likely expired — verify with leasing office.</td>
-      <td>Newer property, limited public renewal history. Greystar manages — typical increases 4–6% annually.</td>
-      <td class="green">Newer build (~2020s). Modern construction &amp; finishes.</td>
-      <td class="green">Greystar managed (one of largest US apartment operators). Professional, consistent. 13 available units as of May 2026.</td>
-      <td>New construction · TechnoGym equipment · Outdoor fitness arbor · Rooftop lounge · EV chargers · LuxerOne package lockers · 180 homes total</td>
-    </tr>
-    <tr>
-      <td style="text-align:center;"><strong>7</strong></td>
-      <td><strong>Runway Playa Vista</strong></td>
-      <td class="green">Up to 8 WEEKS FREE on select apartment homes. Strong incentive — verify current availability.</td>
-      <td class="red">Residents report strict lease break penalties (4 months' rent to break). Renewal increase history unclear.</td>
-      <td class="green">Built ~2015. Modern construction.</td>
-      <td class="yellow">Greystar managed. Generally professional, but residents report inflexibility on lease terms.</td>
-      <td>2-story lofts 18ft ceilings · 2 fitness centers + yoga · 2 outdoor theaters · Juice bar · 10 fire pit plaza · Silicon Beach (tech hub nearby)</td>
-    </tr>
-    <tr>
-      <td style="text-align:center;"><strong>8</strong></td>
-      <td><strong>Forty55 Lofts</strong></td>
-      <td>None confirmed.</td>
-      <td>Greystar managed — typically 4–6% annual increases.</td>
-      <td>Modern (~2010s). Premium build quality.</td>
-      <td class="green">Greystar managed. Excellent management reviews — welcoming, responsive, community-oriented events.</td>
-      <td>True luxury loft · Cardio + zen lounge · Pool/spa · BBQ + dog park · In-unit W/D · Marina del Rey views — aspirational pick if budget expands</td>
-    </tr>
+    <tr><td>1</td><td><strong>Park West</strong></td><td>Ask directly — Equity periodically offers 1–2 wks free on vacancies</td><td>Equity Residential (NYSE: EQR) — typically 3–5%/yr</td><td>1980s–90s established</td><td class="green">Good. Zumper 9.3/10. Professional on-site management. Positive reviews overall.</td></tr>
+    <tr><td>2</td><td><strong>The Crest</strong></td><td class="green"><strong>$1,500 Look &amp; Lease.</strong> Select utilities included (gas, water, elec, trash, cable, A/C). Greystar periodic specials.</td><td>Greystar: typically 4–6%/yr increases</td><td class="green">~2021–2022 new</td><td class="yellow">Greystar managed. Generally professional. 24 ApartmentRatings reviews — verify more.</td></tr>
+    <tr><td>3</td><td><strong>Broadstone Inkwell</strong></td><td class="green"><strong>8 WEEKS FREE + 2 Months Free</strong> for eligible applicants. New 2022.</td><td>Alliance Residential — typical 4–5%/yr</td><td class="green">~2022 new construction</td><td class="yellow">Alliance Residential managed. Limited reviews (new building). Generally positive early feedback.</td></tr>
+    <tr><td>4</td><td><strong>Aster</strong></td><td class="green"><strong>1 MONTH FREE + 8-week special.</strong> Effective studio ~$2,083–$2,287/mo.</td><td>Limited history — new building 2023</td><td class="green">2023 brand new</td><td class="yellow">Greystar managed. Very new — limited review history. Early reviews very positive.</td></tr>
+    <tr><td>5</td><td><strong>Playa Summit</strong></td><td>None confirmed. Ask directly.</td><td class="red">Annual increases; residents complain of no goodwill discounts even for long-term tenants. Amenities (spa, gym) sometimes broken at renewal time.</td><td>~1990s–2000s established</td><td class="red">Staff rated 1/5 on ApartmentRatings (748 reviews). Reports of poor responsiveness post-lease-signing.</td></tr>
+    <tr><td>6</td><td><strong>Burano</strong></td><td class="green"><strong>8 WEEKS FREE (Look &amp; Lease — 24hr)</strong> + <strong>2 MONTHS FREE</strong> for eligible applicants.</td><td>Greystar: 4–6%/yr typically</td><td class="green">~2021 new</td><td class="green">Greystar managed. 5.0 Google rating. 193 Yelp reviews (May 2026). Professional and welcoming.</td></tr>
+    <tr><td>7</td><td><strong>AMLI Park Broadway</strong></td><td>None confirmed — ask directly. AMLI occasionally offers 1-month-free.</td><td>AMLI (NYSE: AMLI) — transparent, typical 4–6%/yr</td><td class="green">2018 (relatively modern)</td><td class="green">EXCELLENT — 4.7 Google stars, 190 reviews. Long-term residents (5+ yr) praise management. LEED Silver/ENERGY STAR.</td></tr>
+    <tr><td>8</td><td><strong>Playa Del Oro</strong></td><td>None confirmed</td><td>Decron Properties — private, moderate increases</td><td>~1990s established</td><td class="yellow">Mixed. Some reports of management shift after signing. 4.0 Google overall is decent.</td></tr>
+    <tr><td>9</td><td><strong>Griffis Pine Ave</strong></td><td class="green"><strong>Up to 6 WEEKS FREE</strong> on select homes (May 2026)</td><td>Griffis Residential — typically 3–5%/yr</td><td>See website</td><td class="green">Excellent — 4.5 Google rating. 100% review response rate. Avg 0.84 days reply time.</td></tr>
+    <tr><td>10</td><td><strong>Gas Company Lofts</strong></td><td>None confirmed</td><td>Essex (NYSE: ESS) — publicly traded; 4–6%/yr, transparent renewal</td><td class="green">1924 historic building, renovated 2005</td><td class="green">EXCELLENT — Zumper 9.9/10. Essex known for professional staff. Residents highly praise management warmth.</td></tr>
+    <tr><td>11</td><td><strong>Packard Lofts</strong></td><td class="green"><strong>1 Month Free</strong> (3rd month's rent)</td><td>Independent management. Limited history publicly available.</td><td class="green">1920s building, modern conversion</td><td class="green">Generally positive. Christian (manager) praised. Quick maintenance. Boutique feel (116 units).</td></tr>
+    <tr><td>12</td><td><strong>MET Lofts</strong></td><td class="green"><strong>1 Month Free</strong> eligible</td><td>Limited public data</td><td class="green">Modern construction (~2000s)</td><td class="yellow">Door attendance + night patrol (good security feature). Yelp: positive staff reviews. Car break-ins mentioned.</td></tr>
+    <tr><td>13</td><td><strong>Garment Lofts</strong></td><td class="green"><strong>1 Month Free</strong> eligible</td><td>Same ownership as Maxfield — small boutique operator</td><td class="green">Historic converted building</td><td class="yellow">Boutique property (very small). Quiet. 13 Yelp reviews only. Limited data.</td></tr>
+    <tr><td>14</td><td><strong>Maxfield / The MAX</strong></td><td class="green"><strong>1-YEAR FREE PARKING</strong> (13-mo lease!) OR 1-mo free. $600 off select units.</td><td>Boutique operator — limited history</td><td class="green">1920s Art Deco, opened residential ~2016</td><td class="yellow">Small boutique (96 units). Generally positive Yelp reviews. Less corporate than Greystar.</td></tr>
+    <tr><td>17</td><td><strong>The Rise Koreatown</strong></td><td>None confirmed</td><td>Limited history (newer building)</td><td class="green">~2021–2022 new</td><td class="green">Positive reviews — Michelle Kim (manager) praised specifically. Immaculate cleanliness noted.</td></tr>
+    <tr><td>20</td><td><strong>Packard Lofts</strong></td><td class="green">1-month free on 3rd month</td><td>See above</td><td>1920s Packard showroom</td><td>See above</td></tr>
   </tbody>
 </table>
 
-<!-- ═══════════════════════════════════════════════════
-     SUMMARY / RECOMMENDATION
-═══════════════════════════════════════════════════ -->
-<h2>Summary &amp; Recommendation</h2>
-<table class="info-table">
+<!-- ══════════════════════════════════════════════════════════════
+     RECOMMENDATIONS + SAFETY SCORES
+══════════════════════════════════════════════════════════════ -->
+<h2>🎯 Final Recommendations</h2>
+<table>
   <thead>
-    <tr>
-      <th style="width:20%">Scenario</th>
-      <th>Best Pick</th>
-      <th>Why</th>
-    </tr>
+    <tr><th>Priority</th><th>Best Pick</th><th>Reason</th></tr>
   </thead>
   <tbody>
-    <tr>
-      <td><strong>Best overall (all criteria met)</strong></td>
-      <td class="green"><strong>#1 Park West</strong></td>
-      <td>Only property confirmed to meet ALL 5 top priorities: studio ~$2,150–$2,450 all-in, 24hr gym, Westchester B+ safety, confirmed 4.0★ Google, underground parking. 4-mile / ~10-min commute.</td>
-    </tr>
-    <tr>
-      <td><strong>Best loft + space</strong></td>
-      <td class="yellow"><strong>#2 Playa Summit</strong></td>
-      <td>1-bd loft units at 700–960 sqft from $1,906/mo. Best square footage value. Confirm Google Maps rating before applying — ApartmentRatings staff score is concerning (1/5).</td>
-    </tr>
-    <tr>
-      <td><strong>Best if budget stretches to ~$2,650</strong></td>
-      <td class="yellow"><strong>#3 Playa Del Oro</strong></td>
-      <td>4.0★ Google, safe 90045, parking included, resort amenities. Studio is $2,514–$2,998 — just above target but parking is bundled in.</td>
-    </tr>
-    <tr>
-      <td><strong>Best new construction</strong></td>
-      <td class="red"><strong>#6 Kinley West LA</strong></td>
-      <td>Newest building, TechnoGym, Greystar management, safe Westchester. Over budget at $2,627+ but worth visiting to negotiate and check promo status.</td>
-    </tr>
-    <tr>
-      <td><strong>Closest to workplace</strong></td>
-      <td class="red"><strong>#5 Pacific Place</strong></td>
-      <td>Only 2 miles / 5 min drive. True loft with 24ft ceilings. Has 1 month free through 5/23. FAILS 4.0★ requirement (3.9) — ask them to show Google Maps rating before deciding.</td>
-    </tr>
-    <tr>
-      <td><strong>Dream pick (budget permitting)</strong></td>
-      <td class="red"><strong>#7 Runway Playa Vista</strong></td>
-      <td>18ft 2-story lofts, 2 gyms, 8 weeks free. Over budget &amp; no parking currently, C safety. Worth revisiting if budget or parking situation changes.</td>
-    </tr>
+    <tr><td class="green"><strong>Best overall</strong><br>(all 5 top criteria)</td><td class="green"><strong>🥇 #1 Park West</strong><br>Westchester</td><td class="L">ONLY confirmed property meeting ALL 5: studio ~$2,150–$2,450 all-in · 4.0★ Google confirmed · Westchester B+ safety (4/5) · 24hr gym · underground parking · 4 mi / ~10–25 min commute. Best by far on safety + commute.</td></tr>
+    <tr><td class="yellow"><strong>Best Long Beach pick</strong><br>(commute borderline)</td><td class="yellow"><strong>#5 The Crest</strong><br>Long Beach</td><td class="L">4.0★ Google · Studio $2,499 + utilities INCLUDED (saves $100-150/mo vs others) = effectively within $2,500 · Waterfront Seaside Way location (safest LB area) · Greystar · $1,500 look &amp; lease. Closest LB property to being fully in budget. Confirm exact utility inclusion scope.</td></tr>
+    <tr><td class="yellow"><strong>Best deal (specials)</strong><br>(commute borderline)</td><td class="yellow"><strong>#4 Aster / #3 Broadstone Inkwell</strong><br>Long Beach</td><td class="L">Aster: effective studio ~$2,287 w/ 8-wk special; brand new 2023; Walk Score 98; pool/gym/rooftop. Broadstone Inkwell: effective ~$2,350 w/ 8-wk/2-mo specials; 4.0★; new 2022. Both are best value in Long Beach when specials are active — confirm availability for Aug/Sep 2026 move-in.</td></tr>
+    <tr><td class="yellow"><strong>Best Google rating<br>in Long Beach</strong></td><td class="yellow"><strong>#7 AMLI Park Broadway</strong><br>Long Beach</td><td class="L">4.7★ Google (190 reviews) — highest-rated property in this research. LEED certified. Excellent management. Studio ~$2,700 all-in (over budget) — ask about specials; they occasionally offer 1-month free which would bring it to ~$2,530/mo effective.</td></tr>
+    <tr><td class="yellow"><strong>Best loft (DTLA)</strong><br>(commute is the trade-off)</td><td class="yellow"><strong>#10 Gas Company Lofts</strong><br>DTLA South Park</td><td class="L">Studio from $1,707 (cheapest quality loft); within budget at ~$2,050 all-in; 9.9/10 Zumper; 1924 historic loft; rooftop pool + sauna; best DTLA location (South Park). ONLY if you can accept 55–80 min commute or shift schedule to avoid rush hour (work 7am, leave 6am, beat traffic in 30 min).</td></tr>
+    <tr><td class="green"><strong>Closest to workplace</strong></td><td class="green"><strong>#1 Park West</strong></td><td class="L">4 miles away. No other research area comes close on commute. Westchester properties (Park West, Playa Summit) are the only ones reliably within 35-40 min including rush hour.</td></tr>
+    <tr><td><strong>Important note</strong></td><td><strong>The De Milo</strong><br>Inglewood</td><td class="L">From your Google Maps search — it's in Inglewood at 201 N La Brea, ~5 miles / 10–15 min from Aerospace Corp. Needs separate deeper research on pricing + Google rating. Potentially excellent proximity pick if it meets budget + safety + rating requirements.</td></tr>
   </tbody>
 </table>
 
-<!-- ═══════════════════════════════════════════════════
-     DATA NOTES
-═══════════════════════════════════════════════════ -->
-<h2>Data Sources &amp; Notes</h2>
-<ul style="font-size:12px;color:#444;line-height:1.7;">
-  <li><strong>Rent prices</strong> sourced from Apartments.com, Zumper, ForRent.com, and Zillow (May 2026). Prices change — verify directly with leasing offices before visiting.</li>
-  <li><strong>Google ratings</strong> confirmed for Park West (4.0★) and Playa Del Oro (4.0★) via Google Maps data. Others marked "unconfirmed" — always verify on Google Maps before shortlisting.</li>
-  <li><strong>Safety scores</strong> based on CrimeGrade.org data: Westchester B+ (30.31 crime/1,000), El Segundo B+ (33.73/1,000), Playa Vista C (38.97/1,000), Marina del Rey D- (42.09/1,000).</li>
-  <li><strong>Drive times</strong> are non-rush-hour estimates to 470 N Aviation Blvd, El Segundo. All shortlisted properties are well within the 35–40 min requirement. Actual rush-hour times may add 10–20 min on I-405 or Lincoln Blvd — test the commute in person.</li>
-  <li><strong>Total cost estimate</strong> = base rent + parking est. + $100–$150/mo utilities (electric, internet, where not bundled). Water/trash often included by landlord.</li>
-  <li><strong>Parking costs</strong> for Park West and Playa Summit not publicly listed — call the leasing office to confirm. Playa Del Oro includes 1 space in rent.</li>
-  <li>This research was conducted in May 2026. Availability changes rapidly. Schedule tours promptly for properties of interest.</li>
+<h2>🗺️ Neighborhood Safety Reference</h2>
+<table>
+  <thead><tr><th>Neighborhood</th><th>Crime Rate (per 1,000/yr)</th><th>Safety Percentile</th><th>Grade</th><th>Score (0–5)</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td class="green"><strong>Westchester / El Segundo (90045)</strong></td><td class="green">30–34</td><td class="green">65–70th</td><td class="green">B+</td><td class="green"><strong>4/5</strong></td><td>Best in this research. Safe for walking, parking, living.</td></tr>
+    <tr><td class="yellow"><strong>Downtown Long Beach</strong></td><td class="yellow">~40–50</td><td class="yellow">10th</td><td class="yellow">C+</td><td class="yellow"><strong>2/5</strong></td><td>Moderate. Waterfront/Seaside Way area is safer. Avoid east side late at night.</td></tr>
+    <tr><td class="yellow"><strong>Koreatown</strong></td><td class="yellow">~50–60</td><td class="yellow">19th</td><td class="yellow">C-</td><td class="yellow"><strong>2/5</strong></td><td>Elevated property crime. Manageable with care. Not ideal for "must be safe" requirement.</td></tr>
+    <tr><td class="red"><strong>DTLA (overall)</strong></td><td class="red">&gt;100</td><td class="red">1st</td><td class="red">F</td><td class="red"><strong>1/5</strong></td><td>Highest crime area in this research. South Park (Gas Co Lofts, MET, Packard) is relatively safer within DTLA, but still 1st percentile nationally.</td></tr>
+    <tr><td class="red"><strong>DTLA Historic Core / Skid Row adj.</strong></td><td class="red">Extreme</td><td class="red">Bottom 1%</td><td class="red">F</td><td class="red"><strong>0/5</strong></td><td>DISQUALIFYING. Pacific Electric Lofts (610 S Main) is directly adjacent to Skid Row. Do not consider.</td></tr>
+  </tbody>
+</table>
+
+<h2>📞 Key Verification Calls Before Visiting</h2>
+<ul style="font-size:12px;line-height:1.8;color:#333;">
+  <li><strong>The Crest:</strong> Confirm EXACTLY which utilities are included and for which unit types. This is the difference between being in or out of budget.</li>
+  <li><strong>Aster + Broadstone Inkwell + Burano:</strong> Confirm specials are still valid for Aug/Sep 2026 move-in date.</li>
+  <li><strong>AMLI Park Broadway:</strong> Ask about any current or upcoming specials for studios specifically.</li>
+  <li><strong>Park West:</strong> Confirm parking cost per month (not publicly listed).</li>
+  <li><strong>Playa Summit:</strong> Verify current Google Maps rating — ask them to show you on Maps during tour.</li>
+  <li><strong>The View (Koreatown):</strong> Verify building is actively leasing — Yelp shows it as "CLOSED." Call before going.</li>
+  <li><strong>The De Milo (Inglewood):</strong> Get full pricing from their website; confirm Google rating and amenities.</li>
+  <li><strong>Griffis Pine Ave:</strong> Confirm parking cost per month and whether 6-week free special extends to Aug/Sep 2026.</li>
 </ul>
 
 <footer>
-  Research compiled: May 22, 2026 &nbsp;|&nbsp; Repo: github.com/MekaSaiKrishna/housefindingLA
+  Deep research compiled: May 22, 2026 &nbsp;|&nbsp;
+  22 properties researched from official websites &nbsp;|&nbsp;
+  Repo: <a href="https://github.com/MekaSaiKrishna/housefindingLA">github.com/MekaSaiKrishna/housefindingLA</a>
 </footer>
 
 </body>
